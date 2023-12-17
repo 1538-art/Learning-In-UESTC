@@ -13,7 +13,7 @@ with tax added: $105.00
 int main() {
   float a;
   scanf("%f", &a);
-  a = a + a * 0.05;
+  a += a * 0.05;
   printf("%.2f", a);
 
   return 0;

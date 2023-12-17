@@ -22,7 +22,8 @@ NOT VALID
 */
 #include <stdio.h>
 int main(void) {
-  int d, i1, i2, i3, i4, i5, j1, j2, j3, j4, j5, first_sum, second_sum, total;
+  int c, d, i1, i2, i3, i4, i5, j1, j2, j3, j4, j5, first_sum, second_sum,
+      total;
 
   // 提示用户输入第一个（单个）数字
   printf("Enter the first (single) digit:");
@@ -36,24 +37,29 @@ int main(void) {
   printf("Enter the second group of five digits:");
   scanf("%1d%1d%1d%1d%1d", &j1, &j2, &j3, &j4, &j5);
 
-  // 计算第一个总和
+  // 提示用户输入第一个（单个）数字
+  printf("Enter the last (single) digit:");
+  scanf("%1d", &c);
+
+  // 计算第一个数字各位总和
   first_sum = d + i2 + i4 + j1 + j3 + j5;
 
-  // 计算第二个总和
+  // 计算第二个数字各位总和
   second_sum = i1 + i3 + i5 + j2 + j4;
 
-  // 计算总和
+  // 计算总和（第一个数乘3加上第二个数）
   total = 3 * first_sum + second_sum;
 
-  // 计算校验码
-  int check_digit = 9 - ((total - 1) % 10);
-
-  // 输出结果
-  if (total == check_digit) {
+  // 计算校验码（找到加上总和之后为10的倍数的个位数）
+  int check_digit = 10 - (total % 10);
+  if (check_digit == 10) {
+    check_digit = 0;
+  }
+  // 将输入的最后一位数与校验码比对，输出结果
+  if (c == check_digit) {
     printf("VALID\n");
   } else {
     printf("NOT VALID\n");
   }
-
   return 0;
 }

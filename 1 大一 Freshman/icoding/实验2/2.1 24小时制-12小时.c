@@ -18,13 +18,12 @@ int main() {
   c = a - 12;
   if (a > 12) // 判断a是否大于12，大于12则表示是下午，否则表示是上午
     printf("Equivalent 12-hour time: %d:%.2d PM\n", c, b);
-  if (a < 12) {
+  else if (a < 12) {
     if (a == 0)
       printf("Equivalent 12-hour time: %d:%.2d AM\n", a + 12, b);
     else
       printf("Equivalent 12-hour time: %d:%.2d AM\n", a, b);
-  }
-  if (a == 12)
+  } else if (a == 12)
     printf("Equivalent 12-hour time: %d:%.2d PM\n", a, b);
   return 0;
 }

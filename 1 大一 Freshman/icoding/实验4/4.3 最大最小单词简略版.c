@@ -35,46 +35,45 @@ Largest word: light*/
 #include <stdio.h>
 #include <string.h>
 
-#include <stdio.h>
-#include <string.h>
-
-#include <stdio.h>
-#include <string.h>
-
 int main() {
 
-  char current[21];
-  char max[21], min[21];
+  char current[21]; // 存储当前单词，最后一个用于储存结束符'\0'
+  char max[21], min[21]; // 存储最大单词和最小单词
 
-  scanf("%s", current);
-  strcpy(max, current);
+  scanf("%s", current); // 读入第一个单词
+  strcpy(max, current); // 将第一个单词赋值给最大单词和最小单词
   strcpy(min, current);
+
   for (;;) {
-    scanf("%s", current);
-    if (strlen(current) != 4) {
+    scanf("%s", current); // 读入下一个单词
 
-      if (strcmp(current, max) >= 0) {
+    if (strlen(current) != 4) { // 如果单词长度不是4，继续
 
+      if (strcmp(current, max) >=
+          0) { // 如果当前单词排序大于等于最大单词，更新最大单词
         strcpy(max, current);
       }
-      if (strcmp(current, min) <= 0) {
+      if (strcmp(current, min) <=
+          0) { // 如果当前单词排序小于等于最小单词，更新最小单词
         strcpy(min, current);
       }
     }
 
-    else {
-      if (strcmp(current, max) >= 0) {
-
+    else { // 比较完之后退出
+      if (strcmp(current, max) >=
+          0) { // 如果当前单词排序大于等于最大单词，更新最大单词
         strcpy(max, current);
       }
-      if (strcmp(current, min) <= 0) {
+      if (strcmp(current, min) <=
+          0) { // 如果当前单词排序小于等于最小单词，更新最小单词
         strcpy(min, current);
       }
 
-      break;
+      break; // 读取到单词后退出循环
     }
   }
-  printf("Smallest word: %s\n", min);
-  printf("Largest word: %s\n", max);
+
+  printf("Smallest word: %s\n", min); // 输出最小单词
+  printf("Largest word: %s\n", max);  // 输出最大单词
   return 0;
 }

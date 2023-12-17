@@ -110,19 +110,34 @@ char pop(void) {
 }
 
 int main(void) {
-  char ch;
-  int correct = 1;
-  while (correct && (ch = getchar()) != '\n') {
-    if (ch == '(' || ch == '{')
-      push(ch);
-    else if (ch == ')')
-      correct = !is_empty() && pop() == '(';
-    else if (ch == '}')
-      correct = !is_empty() && pop() == '{';
+  char inputChar;
+  int isBalanced = 1; // 用于跟踪括号是否平衡
+
+  // 循环读取字符直到遇到换行符或者括号不平衡
+  while (isBalanced && (inputChar = getchar()) != '\n') {
+    // 如果是左括号，就压入栈中
+    if (inputChar == '(' || inputChar == '{') {
+      push(inputChar);
+      continue;
+    }
+    // 如果是右圆括号，检查栈是否为空且栈顶是否为对应的左圆括号
+    if (inputChar == ')') {
+      isBalanced = !is_empty() && pop() == '(';
+      continue;
+    }
+    // 如果是右花括号，检查栈是否为空且栈顶是否为对应的左花括号
+    if (inputChar == '}') {
+      isBalanced = !is_empty() && pop() == '{';
+      continue;
+    }
   }
-  if (correct && is_empty()) {
-    printf("Parentheses/braces are nested properly\n");
-  } else
-    printf("Parentheses/braces are NOT nested properly\n");
+
+  // 如果所有括号都平衡且栈为空，则表达式正确
+  if (isBalanced && is_empty()) {
+    printf("Parentheses/braces are nested properly.\n");
+  } else {
+    printf("Parentheses/braces are NOT nested properly.\n");
+  }
+
   return 0;
 }

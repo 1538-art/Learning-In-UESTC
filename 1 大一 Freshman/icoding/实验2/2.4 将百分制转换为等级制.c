@@ -18,7 +18,6 @@ Error, grade must be between 0 and 100.
 int main() {
   int a, b;
   scanf("%d", &a); // 从标准输入读取一个整数，赋值给变量a
-  b = a / 10;      // 将a除以10，结果存储在变量b中
 
   // 判断a的值是否在0到100之间
   if (a < 0 || a > 100) {
@@ -26,6 +25,7 @@ int main() {
         "Error, grade must be between 0 and 100.\n"); // 如果a不在0到100之间，输出错误信息
     return 0; // 函数返回0，表示程序正常结束
   }
+  b = a / 10; // 因为题目说判定十位上的数字，所以不用考虑小于10的数
 
   // 根据b的值判断a的等级
   switch (b) {
