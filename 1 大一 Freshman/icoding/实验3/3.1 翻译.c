@@ -22,8 +22,8 @@ Enter phone number: 1-DCKS-A2D-OLED
 #include <stdio.h>
 int main() {
   char a;
-  for (; a != '\n';) {
-    a = getchar();
+  while (a != '\n') {
+    a = getchar(); // 循环获取输入的字符
     switch (a) {
     case 'A':
     case 'B':

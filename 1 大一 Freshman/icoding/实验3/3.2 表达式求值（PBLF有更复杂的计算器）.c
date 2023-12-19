@@ -16,17 +16,17 @@ Value of expression: 10.5
 Enter an expression: 2+3*4-5/2
 Value of expression: 7.5
 */
-#include <stdio.h> // 引入标准输入输出库
-int main() {       // 主函数
-  float a, b;      // 定义两个浮点型变量a和b
-  char c;          // 定义一个字符变量c
-  scanf("%f", &a); // 从标准输入读取一个浮点数，并将其存储在变量a中
-  for (;;) {       // 无限循环
-    c = getchar(); // 从标准输入读取一个字符
-    if (c == '\n') // 如果读取到换行符
-      break;       // 跳出循环
-    scanf("%f", &b); // 从标准输入读取一个浮点数，并将其存储在变量b中
-    switch (c) { // 按照字符c进行switch判断
+#include <stdio.h>   // 引入标准输入输出库
+int main() {         // 主函数
+  float a, b;        // 定义两个浮点型变量a和b
+  char c;            // 定义一个字符变量c
+  scanf("%f", &a);   // 读取一个浮点数，并将其存储在变量a中
+  while (1) {        // 循环直到换行
+    c = getchar();   // 从标准输入读取一个字符
+    if (c == '\n')   // 如果读取到换行符
+      break;         // 跳出循环
+    scanf("%f", &b); // 读取一个浮点数，并将其存储在变量b中
+    switch (c) {     // 按照字符c进行switch判断
     case '+':
       a = a + b;
       break; // 如果c为'+'，将a和b相加，并将结果存储在变量a中

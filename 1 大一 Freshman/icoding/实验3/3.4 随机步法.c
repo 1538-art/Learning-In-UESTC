@@ -30,66 +30,66 @@ A	B	G	H	I	.	.	.	.	.
 .	.	.	.	.	.	.	.	.	.
 因为Y的4个⽅向都堵住了，所以没有地⽅可以放置下⼀步的Z了。*/
 #include <stdio.h>
-#include <stdlib.h>
+#include <stdlib.h> //包含rand()函数
 #include <time.h>
+#define SIZE 12 // 中间10*10是地图，外面还有一圈
 
 // 定义一个二维字符数组表示地图
 int main() {
-  char mapp[15][15];
+  char map[SIZE][SIZE];
 
   // 初始化地图为全点
-  for (int i = 1; i <= 10; i++) {
-    for (int j = 1; j <= 10; j++) {
-      mapp[i][j] = '.';
+  for (int i = 1; i < 11; i++) {
+    for (int j = 1; j < 11; j++) {
+      map[i][j] = '.';
     }
   }
 
-  // 设置随机数生成器的种子值
+  // 设置随机数生成器的种子值，因为时间是不断变化的，
+  // 所以每次运行程序都会有不同的随机数序列，从而使最终结果不同
   srand((unsigned)time(NULL));
+  // time(NULL)为当前时间戳，在time.h中
 
   // 将起始位置标记为A
-  mapp[1][1] = 'A';
+  map[1][1] = 'A';
 
   // 循环移动方块，直到生成26个方块
-  for (int x = 1, y = 1, t = 1; t <= 25;) {
-    // 检查当前方块的四个邻接位置是否为空格
-    if (x + 1 <= 10 || x - 1 >= 1 || y + 1 <= 10 || y - 1 >= 1) {
-      if (mapp[x + 1][y] == '.' || mapp[x - 1][y] == '.' ||
-          mapp[x][y + 1] == '.' || mapp[x][y - 1] == '.') {
-        // 随机选择一个邻接位置进行移动
-        int m = rand() % 4;
-        int ox = x, oy = y;
-        switch (m) {
-        case 0:
-          x++;
-          break;
-        case 1:
-          x--;
-          break;
-        case 2:
-          y++;
-          break;
-        case 3:
-          y--;
-          break;
-        }
-        // 如果移动后的位置是空的，则填充为新的方块
-        if (x >= 1 && x <= 10 && y >= 1 && y <= 10 && mapp[x][y] == '.')
-          mapp[x][y] = 'A' + t++;
-        else {
-          x = ox;
-          y = oy;
-        }
-      } else
+  for (int x = 1, y = 1, num = 1; num < 26;) {
+    // 检查方块四周有无空格，若有至少一个，则继续，否则，退出循环，输出地图
+    if (map[x + 1][y] == '.' || map[x - 1][y] == '.' || map[x][y + 1] == '.' ||
+        map[x][y - 1] == '.') {
+      // 随机选择一个邻接位置进行移动
+      int prevX = x, prevY = y; // 记下原位置
+      int m = rand() % 4;
+      switch (m) {
+      case 0:
+        x++;
         break;
+      case 1:
+        x--;
+        break;
+      case 2:
+        y++;
+        break;
+      case 3:
+        y--;
+        break;
+      }
+      // 如果移动后的位置是空的，则填充为新的方块
+      if (x > 0 && x < 11 && y > 0 && y < 11 && map[x][y] == '.')
+        map[x][y] = 'A' + num++;
+      else { // 如果移动后的位置不为空或跳出地图了，则返回刚刚的位置
+        x = prevX;
+        y = prevY;
+      }
     } else
       break;
   }
 
   // 输出地图
-  for (int i = 1; i <= 10; i++) {
-    for (int j = 1; j <= 10; j++) {
-      printf("%c	", mapp[i][j]);
+  for (int i = 1; i < 11; i++) {
+    for (int j = 1; j < 11; j++) {
+      printf("%c", map[i][j]);
     }
     printf("\n");
   }

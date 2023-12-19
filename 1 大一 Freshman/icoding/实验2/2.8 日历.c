@@ -16,25 +16,30 @@ Enter starting day of the week(1=Sun, 7=Sat): 3
 20	21	22	23	24	25	26
 27	28	29	30	31
 */
-#include <stdio.h>       // 引入标准输入输出库
-int main() {             // 主函数
-  int days, start, week; // 定义三个整型变量days, start, week
-  scanf("%d%d", &days, &start); // 从标准输入读取两个整数，分别赋值给days和start
-  week = start; // 将start的值赋给week，表示当前是第几周
-  printf("日 一 二 三 四 五 六\n"); // 输出日历的表头
-  for (int i = 1; i < start; i++) { // 输出前start-1天
-    printf("   ");                  // 输出3个空格
+#include <stdio.h> // 引入标准输入输出库
+
+int main() {
+  int days, week; // 定义两个整数变量days（天数）和week（起始日是星期几）
+  scanf("%d%d", &days, &week); // 从用户输入中读取days和week的值
+
+  for (int i = 1; i < week; i++) {
+    printf("   "); // 打印三个空格，表示一个星期的间隔
   }
-  for (int i = 1; i <= days; i++) { // 循环输出从第1天到第days天
-    if (week > 7) {                 // 如果当前是第8天或更多天
-      printf("\n");                 // 换行
-      week = 1;                     // 将周数重置为1
+
+  for (int i = 1; i <= days; i++) {
+    if (week > 7) {
+      // 如果当前星期的数字已经超过了7，说明已经到了下一个星期的第一个日期
+      printf("\n"); // 换行，开始下一星期的打印
+      week = 1; // 将星期的数字重置为1，表示当前星期的第一个日期
     }
-    if (i < 10)          // 如果当前是第1天到第9天
-      printf(" %d ", i); // 输出一个空格和一个数字
-    else                 // 如果当前是第10天或更多天
-      printf("%d ", i);  // 输出一个数字
-    week++;              // 将周数加1
+
+    if (i < 10) { // 如果当前的日期小于10，需要在日期前加上2个空格
+      printf("  %d", i);
+    } else { // 如果当前的日期大于等于10，先打印一个空格
+      printf(" %d", i);
+    }
+    week++; // 当前星期的数字加1
   }
+
   return 0; // 函数返回0，表示程序正常结束
 }

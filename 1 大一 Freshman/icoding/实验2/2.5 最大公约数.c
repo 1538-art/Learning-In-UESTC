@@ -21,19 +21,18 @@ Greatest common divisor：1
 中；重复上述操作，每次都先判断n是否为 0 。
 */
 #include <stdio.h>
-int main(){
-    int a,b,c=0;
-    scanf("%d%d",&a,&b);
-    for(;;){
-        if(b==0){
-            printf("%d",a);
-            break;
-        }
-        else{
-            c=a%b;
-            a=b;
-            b=c;
-        }
+int main() {
+  int a, b, c = 0;
+  scanf("%d%d", &a, &b);
+  while (1) {
+    if (b == 0) {
+      printf("%d", a);
+      break;
+    } else {
+      c = a % b;
+      a = b;
+      b = c;
     }
-    return 0;
+  }
+  return 0;
 }
