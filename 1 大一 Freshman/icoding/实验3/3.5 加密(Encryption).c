@@ -24,43 +24,30 @@ Encrypted message: Khoor, zruog!
 
 Enter message to be encrypted: Khoor, zruog!
 Enter shift amount (1-25): 23
-Encrypted message: Hello, world!*/
+Encrypted message: Hello, world!
+*/
 #include <stdio.h>
 #include <string.h>
 
 int main() {
-  char c[1000]; // 定义一个字符数组存储输入的字符串
-  int wy, l;    // wy表示要移动的距离，l表示字符串的长度
+  char str[100];
+  int shift = 0, len = 0;
 
-  gets(c); // 读取输入的字符串
-  l = strlen(c) - 1;
-  // 计算字符串的长度，减1是因为字符串的最后一个字符是换行符，不算在长度中
-  scanf("%d", &wy); // 读取要移动的距离
+  fgets(str, sizeof(str), stdin); // 使用fgets获取字符串
+  len = strlen(str);              // 获取字符串长度
 
-  for (int i = 0; i <= l; i++) // 遍历字符串中的每个字符
-  {
-    if (c[i] >= 'a' && c[i] <= 'z') // 如果字符是小写字母
-    {
-      if (c[i] + wy <= 'z')      // 如果移动后的字符在'z'范围内
-        printf("%c", c[i] + wy); // 输出移动后的字符
-      else // 如果移动后的字符超出了'z'的范围
-        printf("%c", c[i] + wy - 26); // 修正
-
-      continue; // 跳过本次循环，进入下一个字符的移动
+  scanf("%d", &shift);
+  shift = shift % 26; // 确保移位在1-25之间
+  for (int i = 0; i < len; i++) {
+    if (str[i] >= 'a' && str[i] <= 'z') { // 加密小写字母
+      str[i] = (str[i] - 'a' + shift) % 26 + 'a';
+      // 加密，若小写字母超过'z'，则从'a'算起
+    } else if (str[i] >= 'A' && str[i] <= 'Z') { // 加密大写字母
+      str[i] = (str[i] - 'A' + shift) % 26 + 'A';
     }
-
-    if (c[i] >= 'A' && c[i] <= 'Z') // 如果字符是大写字母
-    {
-      if (c[i] + wy <= 'Z')      // 如果移动后的字符在'Z'范围内
-        printf("%c", c[i] + wy); // 输出移动后的字符
-      else // 如果移动后的字符超出了'Z'的范围
-        printf("%c", c[i] + wy - 26); // 输出对应的小写字母
-
-      continue; // 跳过本次循环，进入下一个字符的移动
-    }
-
-    printf("%c", c[i]); // 如果字符不是字母，直接输出
+    // 对于非字母字符，不做处理，直接输出
   }
 
-  return 0; // 程序结束
+  printf("Encrypted message: %s", str); // 输出加密后的字符串
+  return 0;                             // 程序结束
 }
