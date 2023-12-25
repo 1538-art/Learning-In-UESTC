@@ -15,7 +15,6 @@ int main() {
   scanf("%d,%d,%d", &R, &G, &B);
   I = round((R * 0.3 + G * 0.59 + B * 0.11));
   printf("(%d,%d,%d)\n", I, I, I);
-
   return 0;
 }
 
