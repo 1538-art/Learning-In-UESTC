@@ -6,3 +6,17 @@
 
  int read_line(char str[], int n);
 */
+#include <stdio.h>
+
+int read_line(char str[], int n) {
+  int i = 0;
+  char ch;
+
+  while ((ch = getchar()) != '\n') {
+    if (i < n) {
+      str[i++] = ch;
+    }
+  }
+  str[i] = '\0';
+  return i;
+}
