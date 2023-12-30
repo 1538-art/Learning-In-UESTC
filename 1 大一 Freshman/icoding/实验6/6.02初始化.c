@@ -14,36 +14,37 @@ init_list
 称之为头结点或表头附加结点。这样原来的表头指针由指向第一个元素的结点改为指向头结点，
 头结点的数据域为空，头结点的指针域指向第一个元素的结点。*/
 #include "lab52.h" // 请不要删除本行头文件，否则检查不通过
-#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 
 extern int CurrentCnt; // 请不要删除本行的全局变量声明，否则检查不通过
+
 void init_list(GoodsList **L) {
-  // GoodsList* p;
-  int i = 0;
-  *L = (GoodsList *)malloc(sizeof(GoodsList));
-  if (*L == NULL) {
-    return;
-  }
-  GoodsList *hpead = *L;
-  GoodsInfo gi;
-  FILE *fp = fopen("goodsinfo.txt", "a+");
-  if (fp == NULL) {
-    perror("fopen()");
-    return;
-  }
-  while (fscanf(fp, "%s %s %d %s %d %d\n", gi.goods_id, gi.goods_name,
-                &gi.goods_price, gi.goods_discount, &gi.goods_amount,
-                &gi.goods_remain) != EOF) {
-    GoodsList *cur = (GoodsList *)malloc(sizeof(GoodsList));
-    if (cur == NULL) {
-      continue;
+  FILE *fp;
+  GoodsInfo goodsInfo;
+  GoodsList *p, *r;
+
+  (*L) = (GoodsList *)malloc(sizeof(GoodsList));
+  r = (*L);
+  if ((fp = fopen(GOODS_FILE_NAME, "r")) == NULL) {
+    if ((fp = fopen(GOODS_FILE_NAME, "w")) == NULL)
+      printf("提示：不能创建商品文件\n");
+  } else {
+    while (!feof(fp)) {
+      fscanf(fp, "%s", goodsInfo.goods_id);
+      fscanf(fp, "\t%s", goodsInfo.goods_name);
+      fscanf(fp, "\t%d", &goodsInfo.goods_price);
+      fscanf(fp, "\t%s", goodsInfo.goods_discount);
+      fscanf(fp, "\t%d", &goodsInfo.goods_amount);
+      fscanf(fp, "\t%d\n", &goodsInfo.goods_remain);
+      p = (GoodsList *)malloc(sizeof(GoodsList));
+      p->data = goodsInfo;
+      r->next = p;
+      r = p;
+      CurrentCnt++;
     }
-    cur->data = gi;
-    hpead->next = cur;
-    hpead = hpead->next;
-    i++;
   }
-  printf("目前有 %d个商品信息 ", i);
+  fclose(fp);
+  r->next = NULL;
+  printf("商品的链表文件已建立，有%d个商品记录\n", CurrentCnt);
 }
