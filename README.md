@@ -18,13 +18,13 @@
 
 ## Github的一些操作
 
-（面向小白，想要了解更多，建议上手实操或看相关文章、视频）![tmpF7A2](X:/Download/Documents/Typora-attachment/tmpF7A2.png)
+（面向小白，想要了解更多，建议上手实操或看相关文章、视频）![图片](img/01.png)
 
 1. `Code`：本仓库包含的内容
 1. `Issue`：遇到的问题，可在此处向作者提问
 1. `Pull request`：推送申请，若您也想向该仓库上传资料，可以再此处申请上传
 
-<img src="X:/Download/Documents/Typora-attachment/tmpCDCD.png" alt="tmpCDCD" style="zoom:50%;" />
+<img src="img/02.png" alt="图片" style="zoom:67%;" />
 
 4. `Watch`：选择提示方式，若有更新，会在您Github主页展示
 5. `Fork`：将仓库复制到本地，即下载仓库中的所有内容
