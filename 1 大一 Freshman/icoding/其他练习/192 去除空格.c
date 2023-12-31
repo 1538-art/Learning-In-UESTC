@@ -86,7 +86,7 @@ void trim(char *s, char *t) {
 extern void trim(char *s, char *t);
 int main() {
   char s[MAXN + 1], t[MAXN + 1];
-  fgets(s, MAXN, stdin);
+  fgets(s, MAXN, stdin); // s：存在哪里，MAXN：最大读取长度，stdin：从哪里读取
   char *p = strchr(s, '\n'); // 获取第一个换行符
   if (p)
     *p = '\0'; // 将其换为字符串结束符

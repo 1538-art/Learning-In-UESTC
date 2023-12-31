@@ -67,9 +67,8 @@ int main() {
 bool is_perfect(unsigned m) {
   unsigned sum = 1;
   for (unsigned i = 2; i <= m / 2; ++i) {
-    if (m % i == 0) {
+    if (m % i == 0)
       sum += i;
-    }
   }
   return sum == m;
 }

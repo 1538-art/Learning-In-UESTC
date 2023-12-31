@@ -86,9 +86,8 @@ int b[MAXN][MAXN];
 int restore_matrix(int a[], int b[][MAXN]) {
   // TODO
   int i = 0; // 记录数组a中有多少个数据
-  while (a[i] != 0) {
+  while (a[i] != 0)
     i++;
-  }
   int num = floor(sqrt(i * 2)); // 根据a中数据个数求方阵一行有几个数
 
   i = 0;                                   // 用于记录a中第几个数据

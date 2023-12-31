@@ -57,9 +57,8 @@ int main() {
 #include <stdio.h>
 double area(double a, double b, double c) {
   // 判断是否能构成三角形
-  if (a + b <= c || a + c <= b || b + c <= a) {
+  if (a + b <= c || a + c <= b || b + c <= a)
     return -1;
-  }
   // 计算半周长
   double s = (a + b + c) / 2.0;
   // 使用秦九韶公式计算面积
