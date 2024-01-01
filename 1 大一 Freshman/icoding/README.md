@@ -8,13 +8,13 @@
 
 icoding 这个平台真的挺怪的，有的地方格式要求很严，可能因为一个空格而不通过，有的地方又宽松，一些示例里的东西你不打印出来也能通过...
 
-如果有更优解，可以找我反馈或提交 issue。这平台性能太差了，用的人一多就不能提交检查了，所以【其他练习】中的代码有些(少量)可能并不正确，请自行检查。
-
 添加了一些其他题目的代码（有些是 22 级或更早的机考真题），详情请参考[ CSDN 博客](https://blog.csdn.net/jjq15008419406/article/details/129643805?app_version=6.2.4&code=app_1562916241&csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22129643805%22%2C%22source%22%3A%222301_81165305%22%7D&uLinkId=usr1mkqgl919blen&utm_source=app)。
+
+如果有更优解，可以找我反馈或提交 issue。这平台性能太差了，用的人一多就不能提交检查了，所以【其他练习】中的代码有些(少量)可能并不正确，请自行检查。
 
 刷题方法：
 
-1. 登录自己的 icoding
+1. 登录自己的 [icoding](https://icoding.run/login)
 2. 将`https://icoding.run/ide/question/xxx/1`中的“xxx”改为题号（见下）并访问
 3. 返回自己的 icoding 并刷新即可
 

@@ -24,8 +24,7 @@ void reverse_name(char *name) {
   }
   temp[j] = '\0'; // 将temp数组的最后一个位置设置为空字符，表示字符串结束
 
-  sscanf(
-      temp, "%s %s", first,
-      last); // 从temp中读取名字的各个部分（用空格分割），将结果存储在first和last中
+  sscanf(temp, "%s %s", first, last);
+  // 从temp中读取名字的各个部分（用空格分割），将结果存储在first和last中
   sprintf(name, "%s, %c.", last, first[0]); // 向name中写入处理后的字符串
 }
