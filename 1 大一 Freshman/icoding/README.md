@@ -12,6 +12,12 @@ icoding 这个平台真的挺怪的，有的地方格式要求很严，可能因
 
 添加了一些其他题目的代码（有些是 22 级或更早的机考真题），详情请参考[ CSDN 博客](https://blog.csdn.net/jjq15008419406/article/details/129643805?app_version=6.2.4&code=app_1562916241&csdn_share_tail=%7B%22type%22%3A%22blog%22%2C%22rType%22%3A%22article%22%2C%22rId%22%3A%22129643805%22%2C%22source%22%3A%222301_81165305%22%7D&uLinkId=usr1mkqgl919blen&utm_source=app)。
 
+刷题方法：
+
+1. 登录自己的 icoding
+2. 将`https://icoding.run/ide/question/xxx/1`中的“xxx”改为题号（见下）并访问
+3. 返回自己的 icoding 并刷新即可
+
 此方法应该能看所有已有的考题（数字更大的就不用看啦，新的应该要考试的开始才会上传 icoding 题库），包含  
 197-203 老东西的编译原理  
 194-196 程算 II（可恶 题目写在 Markdown 文件里，不能通过上面的方法查看）  
