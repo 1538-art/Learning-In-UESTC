@@ -48,24 +48,23 @@ int main() {
     scanf("%s", current); // 读入下一个单词
 
     if (strlen(current) != 4) { // 如果单词长度不是4，继续
-
-      if (strcmp(current, max) >=
-          0) { // 如果当前单词排序大于等于最大单词，更新最大单词
+      // 如果当前单词排序大于等于最大单词，更新最大单词
+      if (strcmp(current, max) >= 0) {
         strcpy(max, current);
       }
-      if (strcmp(current, min) <=
-          0) { // 如果当前单词排序小于等于最小单词，更新最小单词
+      // 如果当前单词排序小于等于最小单词，更新最小单词
+      if (strcmp(current, min) <= 0) {
         strcpy(min, current);
       }
     }
 
     else { // 比较完之后退出
-      if (strcmp(current, max) >=
-          0) { // 如果当前单词排序大于等于最大单词，更新最大单词
+      // 如果当前单词排序大于等于最大单词，更新最大单词
+      if (strcmp(current, max) >= 0) {
         strcpy(max, current);
       }
-      if (strcmp(current, min) <=
-          0) { // 如果当前单词排序小于等于最小单词，更新最小单词
+      // 如果当前单词排序小于等于最小单词，更新最小单词
+      if (strcmp(current, min) <= 0) {
         strcpy(min, current);
       }
 

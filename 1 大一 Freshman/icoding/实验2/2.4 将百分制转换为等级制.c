@@ -21,8 +21,8 @@ int main() {
 
   // 判断a的值是否在0到100之间
   if (a < 0 || a > 100) {
-    printf(
-        "Error, grade must be between 0 and 100.\n"); // 如果a不在0到100之间，输出错误信息
+    printf("Error, grade must be between 0 and 100.\n");
+    // 如果a不在0到100之间，输出错误信息
     return 0; // 函数返回0，表示程序正常结束
   }
   b = a / 10; // 因为题目说判定十位上的数字，所以不用考虑小于10的数
@@ -51,8 +51,8 @@ int main() {
     printf("Letter grade: F\n");
     break;
   default:
-    printf(
-        "Error, grade must be between 0 and 100.\n"); // 如果b不在0到100之间，输出错误信息
+    printf("Error, grade must be between 0 and 100.\n");
+    // 如果b不在0到100之间，输出错误信息
   }
 
   return 0; // 函数返回0，表示程序正常结束

@@ -1,8 +1,8 @@
 /*
 股经纪人的佣金（Brokerage）
 
-在下列程序中添加循环，以便用户可以输入多笔交易并且程序可以计算每次的佣金。程序在用户输入的交易额为
-0 时终止。
+在下列程序中添加循环，以便用户可以输入多笔交易并且程序可以计算每次的佣金。
+程序在用户输入的交易额为 0 时终止。
 
 输出范例：
 
@@ -12,8 +12,8 @@ Commission：$166.00
 Enter value of trade: 20000
 Commission：$144.00
 Enter value of trade: 0
-*/                                                                             \
-#include<stdio.h>
+*/
+#include <stdio.h>
 
 int main(void) {
   float commission, value;

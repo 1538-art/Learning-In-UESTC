@@ -38,13 +38,12 @@ A	B	G	H	I	.	.	.	.	.
 int main() {
   char map[SIZE][SIZE];
 
-  // 初始化地图为全点
+  // 初始化地图为全点，外围一圈不用管
   for (int i = 1; i < 11; i++) {
     for (int j = 1; j < 11; j++) {
       map[i][j] = '.';
     }
   }
-
   // 设置随机数生成器的种子值，因为时间是不断变化的，
   // 所以每次运行程序都会有不同的随机数序列，从而使最终结果不同
   srand((unsigned)time(NULL));
@@ -52,7 +51,6 @@ int main() {
 
   // 将起始位置标记为A
   map[1][1] = 'A';
-
   // 循环移动方块，直到生成26个方块
   for (int x = 1, y = 1, num = 1; num < 26;) {
     // 检查方块四周有无空格，若有至少一个，则继续，否则，退出循环，输出地图
@@ -82,17 +80,16 @@ int main() {
         x = prevX;
         y = prevY;
       }
-    } else
+    } else // 若四周均无空格，则结束
       break;
   }
 
-  // 输出地图
+  // 输出最终地图
   for (int i = 1; i < 11; i++) {
     for (int j = 1; j < 11; j++) {
       printf("%c", map[i][j]);
     }
     printf("\n");
   }
-
   return 0;
 }

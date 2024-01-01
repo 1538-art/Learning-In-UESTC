@@ -23,7 +23,7 @@ int main() {       // 主函数
   }
   printf("Digit:0 1 2 3 4 5 6 7 8 9\n"); // 打印数组a的数字和出现次数
   printf("Occurrences:");                // 打印字符串"Occurrences："
-  for (int i; i < 10; i++)               // 循环遍历数组a的每个元素
-    printf("%d ", a[i]);                 // 打印元素及其出现次数
-  return 0;                              // 返回0，表示程序执行成功
+  for (int i; i < 10; i++)
+    printf("%d ", a[i]); // 打印元素出现的次数
+  return 0;
 }

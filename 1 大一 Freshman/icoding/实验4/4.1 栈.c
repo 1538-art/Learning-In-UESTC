@@ -111,7 +111,7 @@ char pop(void) {
 
 int main(void) {
   char inputChar;
-  int isBalanced = 1; // 用于跟踪括号是否平衡
+  int isBalanced = 1; // 用于记录括号是否平衡
 
   // 循环读取字符直到遇到换行符或者括号不平衡
   while (isBalanced && (inputChar = getchar()) != '\n') {
@@ -138,6 +138,5 @@ int main(void) {
   } else {
     printf("Parentheses/braces are NOT nested properly.\n");
   }
-
   return 0;
 }

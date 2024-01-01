@@ -49,5 +49,5 @@ int main() {
   }
 
   printf("Encrypted message: %s", str); // 输出加密后的字符串
-  return 0;                             // 程序结束
+  return 0;
 }
