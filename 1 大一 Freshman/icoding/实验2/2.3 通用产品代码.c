@@ -1,6 +1,7 @@
 /*
 通用产品代码（UPC, Universal Production Code）
-
+（这个只能自己google一下了，
+可以在这里了解https://www.getupc.com/upctiaoxingmazhishijieshaojixiaoyanjisuanfangfa/）
 修改如下程序，使其可以检测 UPC 的有效性。在用户输入UPC后，程序将输出 VALID 或
 NOT VALID 。
 
