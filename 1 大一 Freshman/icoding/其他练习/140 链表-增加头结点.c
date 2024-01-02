@@ -8,6 +8,7 @@ struct node{
 struct node *add_list(struct node *list, int n);
 */
 #include <stdlib.h>
+// 第一种写法：
 struct node {
   int value;
   struct node *next;
@@ -17,8 +18,26 @@ struct node *add_list(struct node *list, int n) {
   if (new_node == NULL) {
     printf("Error: malloc failed in add_list\n");
     exit(EXIT_FAILURE);
+    // EXIT_FAILURE 是在stdlib.h头文件中定义的宏，用于表示程序异常结束(=1)
   }
   new_node->value = n;
   new_node->next = list;
   return new_node;
 }
+
+/* 第二种写法：
+typedef struct node {
+  int value;
+  struct node *next;
+}Node;
+Node *add_list(Node *list, int n) {
+  Node *new_node = malloc(sizeof(Node));
+  if (new_node == NULL) {
+    printf("Error: malloc failed in add_list\n");
+    exit(EXIT_FAILURE);
+  }
+  new_node->value = n;
+  new_node->next = list;
+  return new_node;
+}
+*/

@@ -50,14 +50,12 @@ durian 10
 2. 如果这个文件不存在，那么你就要从键盘手动输入。
 3. 如果你的程序编译后是a.out，那在命令行里，你可以这样运行程序 a.out < q6.in
 ，避免重复从键盘输入
-*/
 #include <stdio.h>
 #include <string.h>
 typedef struct {
   char key[30]; // 用字符串表示的键
   int value;    // 基于简化的目的，数值的类型是int
 } pair;
-/*
  * 用冒泡排序法对键值对数组按键进行排序（升序）
  *
  * 参数说明：
@@ -65,7 +63,7 @@ typedef struct {
  *      - n：int，数组长度
  * 返回值说明：
  *      - 无
- */
+ *
 void sort_kv(pair kv[], int n) {
   // TODO
   // END OF TODO
@@ -85,10 +83,10 @@ int main() {
   print_kv(kv, n);
   return 0;
 }
-* /
+*/
 #include <stdio.h>
 #include <string.h>
-    typedef struct {
+typedef struct {
   char key[30]; // 用字符串表示的键
   int value;    // 基于简化的目的，数值的类型是int
 } pair;

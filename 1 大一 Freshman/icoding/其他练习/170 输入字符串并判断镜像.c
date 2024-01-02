@@ -9,14 +9,14 @@ is_mirror(char *s1, char *s2); 如果 s1 和 s2 互为镜像，函数返回 1；
 编写main()函数，其功能是：从键盘输入两个字符串（使用scanf），调用 is_mirror
 判断输入的串是否为镜像。如果是，输出yes；否则输出 no。
 提示：注意不要使用野指针！。
-*/                                                                             \
-#include<stdio.h>
+*/
+#include <stdio.h>
 #include <stdlib.h>
 // is_mirror函数已实现，只需完成main函数即可
 int is_mirror(char *s1, char *s2); // 请不要删除，否则编译不通过
 int main() {
   char s1[101], s2[101];
-  scanf("%s", s1); // scanf不读取'\n'，gets要
+  scanf("%s", s1); // scanf不读取'\n'和空格，gets要
   scanf("%s", s2);
   if (is_mirror(s1, s2)) {
     printf("yes\n");

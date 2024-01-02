@@ -9,7 +9,8 @@ unsigned sum_of_factors(unsigned n);
 函数，其功能是：从键盘输入一个正整数n（<=20000），然后调用函数 sum_of_factors
 找出 1~n 之间的所有亲密数对。
 输出形式为：(a,b)(c,d)…。所有输出都在一行。提示：3000以内有三对。
-【（a,b)中，仅仅认为a<=n，b不做限制】（此为考场临时更正题目所加）
+
+【(a,b)中，仅仅认为a<=n，b不做限制】（此为考场临时更正题目所加）
 */
 #include <stdio.h>
 unsigned sum_of_factors(unsigned n);
