@@ -41,6 +41,7 @@ bool is_perfect(unsigned m);
  *
 bool is_perfect(unsigned m) {
   // TODO
+
   // END OF TODO
 }
 static void print_perfect(unsigned a, unsigned b) {

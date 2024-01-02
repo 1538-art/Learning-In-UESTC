@@ -66,7 +66,7 @@ int main() {
 */
 #include <stdio.h>
 #include <string.h>
-void trim(char *s, char *t) {
+void trim(char *s, char *t) { // s为处理前的，t为处理后的
   char *p = s;
   char *q = s + strlen(s) - 1; // 使q指针指向最后一个字符（strlen不包含\0符号）
   while (*p == ' ')
@@ -86,7 +86,7 @@ void trim(char *s, char *t) {
 #define MAXN 512
 extern void trim(char *s, char *t);
 int main() {
-  char s[MAXN + 1], t[MAXN + 1];
+  char s[MAXN + 1], t[MAXN + 1]; // s为处理前的，t为处理后的
   fgets(s, MAXN, stdin); // s：存在哪里，MAXN：最大读取长度，stdin：从哪里读取
   char *m = strchr(s, '\n'); // 获取第一个换行符
   if (m) // 将其换为字符串结束符，因为我们不需要换行符，但fgets会读取
