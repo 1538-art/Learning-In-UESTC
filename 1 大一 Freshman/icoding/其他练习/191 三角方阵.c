@@ -101,7 +101,7 @@ int restore_matrix(int a[], int b[][MAXN]) {
       i++; // 记录a数组中数据的变量加一
     }
   }
-  return num; //
+  return num;
   // END OF TODO
 }
 int main() {

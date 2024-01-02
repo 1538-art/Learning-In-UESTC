@@ -82,14 +82,15 @@ void trim(char *s, char *t) {
   }
   *t = '\0'; // 字符串以\0结尾
 }
+
 #define MAXN 512
 extern void trim(char *s, char *t);
 int main() {
   char s[MAXN + 1], t[MAXN + 1];
   fgets(s, MAXN, stdin); // s：存在哪里，MAXN：最大读取长度，stdin：从哪里读取
-  char *p = strchr(s, '\n'); // 获取第一个换行符
-  if (p)
-    *p = '\0'; // 将其换为字符串结束符
+  char *m = strchr(s, '\n'); // 获取第一个换行符
+  if (m) // 将其换为字符串结束符，因为我们不需要换行符，但fgets会读取
+    *m = '\0';
   trim(s, t);
   printf("(%s)\n", t);
   return 0;
