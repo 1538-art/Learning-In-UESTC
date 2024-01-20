@@ -1,0 +1,16 @@
+OBJS= list.o LinkedStack.o main.o 
+calculator:$(OBJS)
+	cc $(OBJS) -o calculator -lreadline -lhistory -lm
+
+main.o:main.c LinkedStack.h common.h
+	cc -c main.c -o main.o
+	
+LinkedStack.o:LinkedStack.c LinkedStack.h list.h common.h
+	cc -c LinkedStack.c -o LinkedStack.o
+
+list.o:list.c list.h common.h
+	cc -c list.c -o list.o	
+.PHONY:clean
+clean:
+	rm $(OBJS) calculator
+

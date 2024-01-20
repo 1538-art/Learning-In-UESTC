@@ -1,0 +1,107 @@
+﻿  biecaikbaikuai2.cpp
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(51,33): warning C4244: “参数”: 从“double”转换到“DWORD”，可能丢失数据
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(51,17): warning C4244: “参数”: 从“double”转换到“DWORD”，可能丢失数据
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(69,2): error C2665: “settextstyle”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(249,6): message : 可能是“void settextstyle(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(69,2): message : “void settextstyle(int,int,LPCTSTR)”: 无法将参数 3 从“const char [5]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(69,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(69,2): message : 尝试匹配参数列表“(int, int, const char [5])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(71,2): error C2665: “outtextxy”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(226,6): message : 可能是“void outtextxy(int,int,TCHAR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(71,2): message : “void outtextxy(int,int,TCHAR)”: 无法将参数 3 从“const char [11]”转换为“TCHAR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(71,21): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(225,6): message : 或    “void outtextxy(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(71,2): message : “void outtextxy(int,int,LPCTSTR)”: 无法将参数 3 从“const char [11]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(71,21): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(71,2): message : 尝试匹配参数列表“(int, int, const char [11])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(75,2): error C2665: “settextstyle”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(249,6): message : 可能是“void settextstyle(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(75,2): message : “void settextstyle(int,int,LPCTSTR)”: 无法将参数 3 从“const char [5]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(75,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(75,2): message : 尝试匹配参数列表“(int, int, const char [5])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(76,2): error C2665: “outtextxy”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(226,6): message : 可能是“void outtextxy(int,int,TCHAR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(76,2): message : “void outtextxy(int,int,TCHAR)”: 无法将参数 3 从“const char [7]”转换为“TCHAR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(76,22): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(225,6): message : 或    “void outtextxy(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(76,2): message : “void outtextxy(int,int,LPCTSTR)”: 无法将参数 3 从“const char [7]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(76,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(76,2): message : 尝试匹配参数列表“(int, int, const char [7])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(80,2): error C2665: “settextstyle”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(249,6): message : 可能是“void settextstyle(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(80,2): message : “void settextstyle(int,int,LPCTSTR)”: 无法将参数 3 从“const char [5]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(80,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(80,2): message : 尝试匹配参数列表“(int, int, const char [5])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(81,2): error C2665: “outtextxy”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(226,6): message : 可能是“void outtextxy(int,int,TCHAR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(81,2): message : “void outtextxy(int,int,TCHAR)”: 无法将参数 3 从“const char [7]”转换为“TCHAR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(81,22): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(225,6): message : 或    “void outtextxy(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(81,2): message : “void outtextxy(int,int,LPCTSTR)”: 无法将参数 3 从“const char [7]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(81,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(81,2): message : 尝试匹配参数列表“(int, int, const char [7])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(85,2): error C2665: “settextstyle”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(249,6): message : 可能是“void settextstyle(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(85,2): message : “void settextstyle(int,int,LPCTSTR)”: 无法将参数 3 从“const char [5]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(85,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(85,2): message : 尝试匹配参数列表“(int, int, const char [5])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(86,2): error C2665: “outtextxy”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(226,6): message : 可能是“void outtextxy(int,int,TCHAR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(86,2): message : “void outtextxy(int,int,TCHAR)”: 无法将参数 3 从“const char [7]”转换为“TCHAR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(86,22): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(225,6): message : 或    “void outtextxy(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(86,2): message : “void outtextxy(int,int,LPCTSTR)”: 无法将参数 3 从“const char [7]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(86,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(86,2): message : 尝试匹配参数列表“(int, int, const char [7])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(90,2): error C2665: “settextstyle”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(249,6): message : 可能是“void settextstyle(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(90,2): message : “void settextstyle(int,int,LPCTSTR)”: 无法将参数 3 从“const char [5]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(90,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(90,2): message : 尝试匹配参数列表“(int, int, const char [5])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(91,2): error C2665: “outtextxy”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(226,6): message : 可能是“void outtextxy(int,int,TCHAR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(91,2): message : “void outtextxy(int,int,TCHAR)”: 无法将参数 3 从“const char [7]”转换为“TCHAR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(91,22): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(225,6): message : 或    “void outtextxy(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(91,2): message : “void outtextxy(int,int,LPCTSTR)”: 无法将参数 3 从“const char [7]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(91,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(91,2): message : 尝试匹配参数列表“(int, int, const char [7])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(97,2): error C2665: “settextstyle”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(249,6): message : 可能是“void settextstyle(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(97,2): message : “void settextstyle(int,int,LPCTSTR)”: 无法将参数 3 从“const char [5]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(97,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(97,2): message : 尝试匹配参数列表“(int, int, const char [5])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(100,2): error C2665: “outtextxy”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(226,6): message : 可能是“void outtextxy(int,int,TCHAR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(100,2): message : “void outtextxy(int,int,TCHAR)”: 无法将参数 3 从“const char [11]”转换为“TCHAR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(100,21): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(225,6): message : 或    “void outtextxy(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(100,2): message : “void outtextxy(int,int,LPCTSTR)”: 无法将参数 3 从“const char [11]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(100,21): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(100,2): message : 尝试匹配参数列表“(int, int, const char [11])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(141,7): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(167,8): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(197,8): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(227,8): error C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(256,2): error C2665: “settextstyle”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(249,6): message : 可能是“void settextstyle(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(256,2): message : “void settextstyle(int,int,LPCTSTR)”: 无法将参数 3 从“const char [5]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(256,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(256,2): message : 尝试匹配参数列表“(int, int, const char [5])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(259,2): error C2665: “outtextxy”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(226,6): message : 可能是“void outtextxy(int,int,TCHAR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(259,2): message : “void outtextxy(int,int,TCHAR)”: 无法将参数 3 从“const char [12]”转换为“TCHAR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(259,21): message : 没有使该转换得以执行的上下文
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\VS\include\easyx.h(225,6): message : 或    “void outtextxy(int,int,LPCTSTR)”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(259,2): message : “void outtextxy(int,int,LPCTSTR)”: 无法将参数 3 从“const char [12]”转换为“LPCTSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(259,21): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(259,2): message : 尝试匹配参数列表“(int, int, const char [12])”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(260,2): error C2664: “int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)”: 无法将参数 2 从“const char [12]”转换为“LPCWSTR”
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(260,24): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\winuser.h(9180,1): message : 参见“MessageBoxW”的声明
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(260,2): message : 尝试匹配参数列表“(HWND, const char [12], const char [5], long)”时
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(283,18): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(292,18): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(302,18): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(312,18): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\c\tuxinghua\biecaikbaikuai2\biecaikbaikuai2\biecaikbaikuai2.cpp(331,24): warning C4390: “;”: 找到空的受控语句；这是否是有意的?
