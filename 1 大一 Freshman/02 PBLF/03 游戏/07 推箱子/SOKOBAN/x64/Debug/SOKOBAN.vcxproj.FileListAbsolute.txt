@@ -1,0 +1,3 @@
+C:\Users\PC\Desktop\SOKOBAN\x64\Debug\SOKOBAN.exe
+D:\arichang\code\c\SOKOBAN\x64\Debug\SOKOBAN.exe
+D:\SOKOBAN\x64\Debug\SOKOBAN.exe
