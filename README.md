@@ -1,6 +1,17 @@
-# Learning-In-UESTC
+<h1 align="center" style="color:lightblue">Learning-In-UESTC</h1>
 
-## 前言
+<details>
+  <summary><u>目录</u></summary>
+	<ul>
+    <li><a href="#00">00 前言</a></li>
+    <li><a href="#01">01 声明</a></li>
+    <li><a href="#02">02 使用方法</a></li>
+    <li><a href="#03">03 Github的一些基础操作</a></li>
+    <li><a href="#04">04 其他</a></li>
+  </ul>
+</details>
+
+<h2 align="center" style="color:lightgreen" id="00">00 前言</h2>
 
 欢迎来到本仓库！（来都来了，点个`Star`吧~）
 
@@ -8,13 +19,13 @@
 
 同时也希望各位能积极主动地加入本仓库的建设之中。一些对你已经没用的资料，或许正是别人苦苦寻找的；一些你已经完成的项目，或许就能拯救别人于水火之中。我相信每个人都有接受过别人的帮助，只有大家积极主动的帮助别人，这一优良传统才能得以延续。
 
-## 声明
+<h2 align="center" style="color:lightgreen" id="01">01 声明</h2>
 
 本仓库仅包含软院内容，但一些内容应该各学院都适用。
 
 本仓库内容仅作辅助学习用，且完全免费，禁止凭此盈利。
 
-## 使用方法
+<h2 align="center" style="color:lightgreen" id="02">02 使用方法</h2>
 
 - 本仓库主要采用以下结构便于查找：`学期`>`学科`>`细分`，如：
   - `1 大一 Freshman`
@@ -29,7 +40,7 @@
   - 关注每学期文件夹中的`README.MD`，我会在此记录更新
   - 查看下面 ↓ 的`11.`-`13.`
 
-## Github 的一些基础操作
+<h2 align="center" style="color:lightgreen" id="03">03 Github 的一些基础操作</h2>
 
 （面向小白，需要自带魔法，想要了解更多，建议上手实操或看相关文章、视频）![图片1](img/01.png)
 
@@ -65,7 +76,7 @@
 
 13.`History`：查看更新，如图
 
-## 其他
+<h2 align="center" style="color:lightgreen"  id="04">04 其他</h2>
 
 欢迎各位参与本仓库的建设，快来成为 contributor 吧！贡献方式：
 
