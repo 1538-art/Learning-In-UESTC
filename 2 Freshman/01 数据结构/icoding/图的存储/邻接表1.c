@@ -28,7 +28,6 @@ bool insert_vertex(ListGraph *G, VertexType v);
 bool insert_arc(ListGraph *G, VertexType v, VertexType w);
 */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "graph.h" //请勿删除，否则检查不通过
@@ -44,16 +43,12 @@ bool insert_vertex(ListGraph *G, VertexType v) {
     return false;
 }
 
-
 bool insert_arc(ListGraph *G, VertexType v, VertexType w) {
-  
   int i = locate_vertex(G, v);
   int j = locate_vertex(G, w);
-  
   //判结点是否存在,不存在就返回false
   if (i == -1 || j == -1)
     return false;
-  
   ArcNode *p;
   for (p = G->vertex[i].firstarc; p; p = p->nextarc)
     if (p->adjvex == j) return false; //判边是否存在,存在就返回false
