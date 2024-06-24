@@ -33,6 +33,7 @@ void visit_node(BiTNode *node);
 #include <stdlib.h>
 #include <stdio.h>
 #include "bitree.h" //请不要删除，否则检查不通过
+
 void pre_order(BiTree root) {
   Stack S; // 声明栈变量
   init_stack(&S); // 初始化栈，传入栈的地址
@@ -43,11 +44,9 @@ void pre_order(BiTree root) {
       visit_node(T); // 访问当前节点
       push(&S, T); // 将当前节点压入栈中
       T = T->left; // 移动到左子树
-    } else {
-      if (!is_empty(&S)) { // 如果栈不为空
-        pop(&S, &T); // 弹出栈顶元素
-        T = T->right; // 移动到右子树
-      }
+    } else if (!is_empty(&S)) { // 如果栈不为空
+      pop(&S, &T); // 弹出栈顶元素
+      T = T->right; // 移动到右子树
     }
   }
 }
