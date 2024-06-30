@@ -27,16 +27,14 @@ newstr，替换成的新字符串
 #include "dsstring.h"
 
 // 计算从pos开始，字符串长度
-int str_len(const char* str, int pos) {
+int str_len(const char *str, int pos) {
   int count = 0;
-  for (int i = pos; str[i] != '\0'; i++) {
-    count++;
-  }
+  for (int i = pos; str[i] != '\0'; i++) count++;
   return count;
 }
 
 
-int str_replace(const char* in, char* out, int outlen, const char* oldstr, const char* newstr) {
+int str_replace(const char *in, char *out, int outlen, const char *oldstr, const char *newstr) {
   int count = 0; // 记录替换次数
   int out_i = 0; // 输出字符串的下标
   int newstrLen = str_len(newstr, 0); // 新字符串的长度
@@ -62,8 +60,7 @@ int str_replace(const char* in, char* out, int outlen, const char* oldstr, const
       // 不匹配，输出当前字符
       out[out_i] = in[i - 1];
       out_i++;
-    }
-    else {
+    } else {
       if (str_len(out, 0) + str_len(in, i) + newstrLen < outlen) {
         // 匹配，替换为 newstr
         for (int k = 0; newstr[k] != '\0';) {
@@ -73,8 +70,7 @@ int str_replace(const char* in, char* out, int outlen, const char* oldstr, const
         }
         
         count++;
-      }
-      else {
+      } else {
         // 输出剩余字符
         while (j != 0) {
           out[out_i] = in[i - j];

@@ -1,3 +1,4 @@
+/*
 //二叉树
 typedef int DataType;
 
@@ -32,6 +33,8 @@ void free_queue(Queue *tree); //释放队列
 
 //完成
 BiTNode* transform(CSNode *root);
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "bitree.h" //请不要删除，否则检查不通过
