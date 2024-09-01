@@ -1,4 +1,0 @@
-﻿  test.c
-E:\c语言代码\test_c\正式项目\test.c(514): warning C4715: “start”: 不是所有的控件路径都返回值
-E:\c语言代码\test_c\正式项目\test.c(613): warning C4715: “zhuce”: 不是所有的控件路径都返回值
-  正式项目.vcxproj -> E:\c语言代码\test_c\正式项目\x64\Debug\正式项目.exe
