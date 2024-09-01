@@ -1,0 +1,3 @@
+﻿  联系人.cpp
+C:\Users\Lenovo\Desktop\联系人3.0\联系人3.0\联系人.cpp(119,10): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  联系人3.0.vcxproj -> C:\Users\Lenovo\Desktop\联系人3.0\x64\Debug\联系人3.0.exe
