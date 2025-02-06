@@ -32,3 +32,5 @@
 ## 复习文档
 
 [计院的飞书文档](https://uestc.feishu.cn/docx/WUKudcjIIow0Mrx6Bq2cM4JRnQu)
+[uestc-course仓库](https://github.com/Xovee/uestc-course/tree/main/%E8%AF%BE%E7%A8%8B%E7%9B%AE%E5%BD%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E5%A4%8D%E4%B9%A0%E8%B5%84%E6%96%99)
+
