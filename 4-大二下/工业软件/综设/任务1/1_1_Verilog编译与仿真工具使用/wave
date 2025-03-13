@@ -1,0 +1,58 @@
+#! /c/Source/iverilog-install/bin/vvp
+:ivl_version "12.0 (devel)" "(s20150603-1539-g2693dd32b)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 9;
+:vpi_module "C:\iverilog\lib\ivl\system.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_sys.vpi";
+:vpi_module "C:\iverilog\lib\ivl\vhdl_textio.vpi";
+:vpi_module "C:\iverilog\lib\ivl\v2005_math.vpi";
+:vpi_module "C:\iverilog\lib\ivl\va_math.vpi";
+S_000001494800ec10 .scope module, "a_tb_main" "a_tb_main" 2 3;
+ .timescale -9 -9;
+v000001494800b8d0_0 .var "a", 0 0;
+v000001494800b970_0 .net "q", 0 0, v000001494800b830_0;  1 drivers
+S_000001494800eda0 .scope module, "f1" "justinv" 2 21, 3 1 0, S_000001494800ec10;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "a1";
+    .port_info 1 /OUTPUT 1 "q1";
+v000001494800ef30_0 .net "a1", 0 0, v000001494800b8d0_0;  1 drivers
+v000001494800b830_0 .var "q1", 0 0;
+E_000001494800cf20 .event anyedge, v000001494800ef30_0;
+    .scope S_000001494800eda0;
+T_0 ;
+    %wait E_000001494800cf20;
+    %load/vec4 v000001494800ef30_0;
+    %inv;
+    %store/vec4 v000001494800b830_0, 0, 1;
+    %jmp T_0;
+    .thread T_0, $push;
+    .scope S_000001494800ec10;
+T_1 ;
+    %pushi/vec4 0, 0, 1;
+    %store/vec4 v000001494800b8d0_0, 0, 1;
+    %delay 200, 0;
+    %vpi_call 2 10 "$stop", 32'sb00000000000000000000000000000000 {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_000001494800ec10;
+T_2 ;
+    %delay 10, 0;
+    %vpi_func 2 13 "$random" 32 {0 0 0};
+    %pushi/vec4 2, 0, 32;
+    %mod;
+    %pad/u 1;
+    %store/vec4 v000001494800b8d0_0, 0, 1;
+    %jmp T_2;
+    .thread T_2;
+    .scope S_000001494800ec10;
+T_3 ;
+    %vpi_call 2 17 "$dumpfile", "wave.vcd" {0 0 0};
+    %vpi_call 2 18 "$dumpvars", 32'sb00000000000000000000000000000000, S_000001494800ec10 {0 0 0};
+    %end;
+    .thread T_3;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "a_tb.v";
+    "a.v";
