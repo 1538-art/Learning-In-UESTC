@@ -1,0 +1,34 @@
+1.填空题
+(1)	String、StringBuffer、StringBuilder
+(2)	System
+(3)	毫秒
+(4)	String
+(5)	StringBuffer、StringBuilder
+2.选择题
+(1)	B
+(2)	A
+(3)	A
+(4)	C
+(5)	B
+3.思考题
+(1)请简述int和Integer有什么区别？
+	int是java提供的8种原始数据类型之一。Java为每个原始类型提供了封装类，Integer是java为int提供的封装类。int的默认值为0，而Integer的默认值为null，即Integer可以区分出未赋值和值为0的区别，int则无法表达出未赋值的情况。
+(2)请简述Math.round(11.5)等于多少？
+	Math.round(11.5)等于12，因为round方法表示“四舍五入”，算法为Math.floor(x+0.5)，即将原来的数字加上0.5后再向下取整。
+(3)请简述如何格式化日期？
+	可以用SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+(4)请简述String类、StringBuffer类的区别？
+	String类是不可变的字符序列，StringBuffer类是可变的字符序列，String类占用内存小，但操作效率低，后两者占用内存比String类多，但操作效率高，StringBuffer类还兼顾了线程安全。
+
+
+
+
+
+
+
+
+
+
+
+
+

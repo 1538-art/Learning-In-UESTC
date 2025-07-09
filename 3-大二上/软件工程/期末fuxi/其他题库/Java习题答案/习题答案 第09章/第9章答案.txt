@@ -1,0 +1,23 @@
+1.填空题
+(1)	字节流	字符流	输入流	输出流
+(2)	字节流
+(3)	BufferedReader	BufferedWriter
+(4)	list()
+(5)	RandomAccessFile
+2.选择题
+(1)	D
+(2)	B
+(3)	A
+(4)	A
+(5)	C
+3.思考题
+(1)请简述java中有几种类型的流？
+	字节流和字符流；其中字节流继承于InputStream OutputStream，字符流继承于Reader Writer。
+(2)请简述什么是java序列化？
+	序列化就是一种用来处理对象流的机制，所谓对象流也就是将对象的内容进行流化。可以对流化后的对象进行读写操作，也可将流化后的对象传输于网络之间。序列化是为了解决在对对象流进行读写操作时所引发的问题。
+(3)请简述如何实现java序列化？
+	将需要被序列化的类实现Serializable接口，该接口没有需要实现的方法，implements Serializable只是为了标注该对象是可被序列化的，然后使用一个输出流(如：FileOutputStream)来构造一个ObjectOutputStream(对象流)对象，接着，使用ObjectOutputStream对象的writeObject(Object obj)方法就可以将参数为obj的对象写出(即保存其状态)，要恢复的话则用输入流。
+(4)请简述什么是标准的I/O流？
+	在java语言中，用stdin表示键盘，用stdout表示监视器。他们均被封装在System类的类变量in和out中，对应于系统调用System.in和System.out。这样的两个流加上System.err统称为标准流，它们是在System类中声明的3个类变量：public static InputStream in、publicstaticPrintStream out和public static PrintStream err
+(5)请简述3个常见的字符集，实际开发中最常用的是哪种？
+	ASCII、ISO-8859-1、GB2312、GBK、Unicode、UTF-8（写出3种即可），其中开发中最常用的是UTF-8。

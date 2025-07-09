@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第01章" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第02章" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第03章" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第04章" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第07章" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第08章" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第09章" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第10章" isTestSource="false" packagePrefix="com.qianfeng.java7" />
+      <sourceFolder url="file://$MODULE_DIR$/习题答案 第11章" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>
