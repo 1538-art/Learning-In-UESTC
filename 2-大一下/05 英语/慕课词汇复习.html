@@ -1,0 +1,1817 @@
+<!DOCTYPE html> 
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>成电大学英语词汇训练系统</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .unit-selector {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .unit-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .unit-btn {
+            padding: 12px 20px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .unit-btn:hover, .unit-btn.active {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .quiz-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .question-number {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+        }
+
+        .progress {
+            flex: 1;
+            margin: 0 20px;
+            background: #f0f0f0;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            transition: width 0.3s ease;
+        }
+
+        .question-text {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        .question-translation {
+            font-size: 1.1em;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            color: #666;
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .options {
+            display: grid;
+            gap: 15px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            background: #f8f9ff;
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .option.correct {
+            border-color: #4CAF50;
+            background: #4CAF50;
+            color: white;
+        }
+
+        .option.incorrect {
+            border-color: #f44336;
+            background: #f44336;
+            color: white;
+        }
+
+        .option-main {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .option input[type="radio"] {
+            margin-right: 15px;
+            transform: scale(1.2);
+        }
+
+        .option-translation {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-left: 35px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a6fd8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #545b62;
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .result-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .score-display {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+            margin: 20px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .feedback {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部 -->
+        <div class="header">
+            <h1>🎓 成电大学英语词汇训练</h1>
+            <p>2024级大一下学期 • 慕课词汇专项练习</p>
+        </div>
+
+        <!-- 单元选择器 -->
+        <div class="unit-selector">
+            <h3>📚 选择练习单元</h3>
+            <div class="unit-buttons">
+                <button class="unit-btn active" data-unit="U1">U1</button>
+                <button class="unit-btn" data-unit="U2">U2</button>
+                <button class="unit-btn" data-unit="U3">U3</button>
+                <button class="unit-btn" data-unit="U4">U4</button>
+                <button class="unit-btn" data-unit="U5">U5</button>
+                <button class="unit-btn" data-unit="U6">U6</button>
+                <button class="unit-btn" data-unit="U7">U7</button>
+                <button class="unit-btn" data-unit="U8">U8</button>
+                <button class="unit-btn" data-unit="U9">U9</button>
+                <button class="unit-btn" data-unit="U10">U10</button>
+                <button class="unit-btn" data-unit="U11">U11</button>
+                <button class="unit-btn" data-unit="U12">U12</button>
+            </div>
+        </div>
+
+        <!-- 答题区域 -->
+        <div class="quiz-container" id="quizContainer">
+            <div class="question-header">
+                <div class="question-number" id="questionNumber">题目 1/15</div>
+                <div class="progress">
+                    <div class="progress-bar" id="progressBar" style="width: 6.67%"></div>
+                </div>
+                <div class="score-info">当前单元: <span id="currentUnit">U1</span></div>
+            </div>
+
+            <div class="question-text" id="questionText">
+                Loading question...
+            </div>
+
+            <div class="question-translation hidden" id="questionTranslation">
+                题目翻译将在这里显示...
+            </div>
+
+            <div class="options" id="optionsContainer">
+                <!-- 选项将由JavaScript动态生成 -->
+            </div>
+
+            <div class="feedback hidden" id="feedback"></div>
+
+            <div class="controls">
+                <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()">⬅️ 上一题</button>
+                <button class="btn btn-primary" id="submitBtn" onclick="submitAnswer()">提交答案</button>
+                <button class="btn btn-primary hidden" id="nextBtn" onclick="nextQuestion()">下一题 ➡️</button>
+            </div>
+        </div>
+
+        <!-- 结果显示 -->
+        <div class="result-container hidden" id="resultContainer">
+            <h2>🎉 答题完成！</h2>
+            <div class="score-display" id="finalScore">0/15</div>
+            <p id="scorePercentage">正确率: 0%</p>
+            <button class="btn btn-primary" onclick="restartQuiz()" style="margin-top: 20px;">重新开始</button>
+        </div>
+    </div>
+
+    <script>
+
+        const questionBank = {
+            U1: [
+                {
+                    "question":"During the Chengdu World University Games（成都世界大学生运动会）, some areas of Chengdu implemented ________ Day Driving policy.",
+                    "options":["A. Alternated","B. Alternative","C. Alternate","D. Alterable"],
+                    "correct":2,
+                    "translation":"在成都世界大学生运动会期间，成都的一些地区实施了________单双号限行政策。",
+                    "optionsTranslation":["交替的","可替代的","轮流的","可改变的"]
+                },
+                {
+                    "question":"The company apologized for the ______, which resulted in serious consequences.",
+                    "options":["A. Overview","B. Oversight","C. Oversee","D. Overwatch"],
+                    "correct":1,
+                    "translation":"公司为________道歉，这导致了严重的后果。",
+                    "optionsTranslation":["概述","疏忽","监管","看守"]
+                },
+                {
+                    "question":"It is generally required that passengers turn off their mobile phones before the___________ of the flight.",
+                    "options":["A. Commentary","B. Comment","C. Commerce","D. Commencement"],
+                    "correct":3,
+                    "translation":"通常要求乘客在航班__________之前关闭手机。",
+                    "optionsTranslation":["评论","评论","商业","开始"]
+                },
+                {
+                    "question":"It was very ______ of them to buy luxuries when they could barely（勉强能） pay their bills.",
+                    "options":["A. Extravagant","B. Extravagance","C. Extravagate","D. Extravagated"],
+                    "correct":0,
+                    "translation":"他们________购买奢侈品，尽管他们几乎无法支付账单。",
+                    "optionsTranslation":["奢侈的","奢侈行为","越轨","越轨行为"]
+                },
+                {
+                    "question":"The successful execution（执行，实施） of the project required strong ______ among various teams, each handling different aspects to achieve the desired outcome.",
+                    "options":["A. Coordination","B. Coordinated","C. Coordinate","D. Coordinator"],
+                    "correct":0,
+                    "translation":"项目的成功执行需要各个团队之间的强有力的________，每个团队处理不同的方面以达到预期的结果。",
+                    "optionsTranslation":["协调","协调的","协调","协调员"]
+                },
+                {
+                    "question":"Some forethought（深谋远虑，先见） and preparation are necessary before you embark _____ the financial project.",
+                    "options":["A. At","B. In","C. On","D. To"],
+                    "correct":2,
+                    "translation":"在你开始这个金融项目之前，需要一些深谋远虑和准备。",
+                    "optionsTranslation":["在","在","着手","到"]
+                },
+                {
+                    "question":"When visiting the zoo, the children observed that elephants collaborated _______ looking after their young.",
+                    "options":["A. With","B. In","C. To","D. At"],
+                    "correct":1,
+                    "translation":"参观动物园时，孩子们观察到大象们在照顾幼崽方面进行合作。",
+                    "optionsTranslation":["与","在","到","在"]
+                },
+                {
+                    "question":"The bad weather has eventually _________ back the launching of Mars spacecraft by several weeks.",
+                    "options":["A. Set","B. Drew","C. Kept","D. Taken"],
+                    "correct":0,
+                    "translation":"糟糕的天气最终_________了火星飞船的发射，推迟了几个星期。",
+                    "optionsTranslation":["推迟","拉","保持","带走"]
+                },
+                {
+                    "question":"As a patient with high blood pressure, he has to ______ to a strict low-fat and low-salt diet.",
+                    "options":["A. Adopt","B. Aspire","C. Adhere","D. Associate"],
+                    "correct":2,
+                    "translation":"作为一名高血压患者，他必须________严格的低脂肪、低盐饮食。",
+                    "optionsTranslation":["采用","追求","遵守","联系"]
+                },
+                {
+                    "question":"The newly passed law states that anyone committing（犯） the offence（违法行为） is liable（有责任的）_________ imprisonment（监禁）.",
+                    "options":["A. On","B. To","C. In","D. At"],
+                    "correct":1,
+                    "translation":"新通过的法律规定，任何犯罪的人都可能被监禁。",
+                    "optionsTranslation":["在","可能","在","在"]
+                },
+                {
+                    "question":"For a long time, this mountain village has been underdeveloped due to the [barren 贫瘠的] field in the region.",
+                    "options":["A. Fertile","B. Unproductive","C. Invaluable","D. Versatile"],
+                    "correct":1,
+                    "translation":"长期以来，这个山村由于该地区土地________而处于欠发达状态。",
+                    "optionsTranslation":["肥沃的","不毛的","无价的","多才多艺的"]
+                },
+                {
+                    "question":"Despite numerous challenges and dangers, the [courageous] firefighters bravely entered the burning building to rescue the trapped（受困的）occupants（居住者）.",
+                    "options":["A. Ruthless","B. Fearless","C. Considerate","D. Advantageous"],
+                    "correct":1,
+                    "translation":"尽管面临诸多挑战和危险，________消防员勇敢地进入燃烧的大楼营救被困人员。",
+                    "optionsTranslation":["无情的","无畏的","体贴的","有利的"]
+                },
+                {
+                    "question":"Because there was serious injury for a large number of people, the government [launched 启动] an investigation into the incident.",
+                    "options":["A. Promoted","B. Conducted","C. Organized","D. Required"],
+                    "correct":1,
+                    "translation":"由于许多人受了重伤，政府________了对该事件的调查。",
+                    "optionsTranslation":["提升","进行","组织","要求"]
+                },
+                {
+                    "question":"Many jobs were lost in this country as it sinks deeper into the economic and social [recession 经济衰退].",
+                    "options":["A. Depression","B. Progression","C. Fluctuation","D. Reflection"],
+                    "correct":0,
+                    "translation":"随着这个国家陷入更深的经济和社会衰退，许多人失去了工作。",
+                    "optionsTranslation":["经济萧条","进步","波动","反思"]
+                },
+                {
+                    "question":"The city is full of clubs, karaoke bars（kara/ok/ke bar 卡拉OK 酒吧） and live shows, a great place to enjoy a lively nightlife for the [night owls 夜猫子].",
+                    "options":["A. People who stay up late","B. People who get up late","C. People who go to bed early","D. People who get up early"],
+                    "correct":0,
+                    "translation":"这座城市到处都是俱乐部、卡拉OK酒吧和现场表演，是________享受热闹夜生活的好地方。",
+                    "optionsTranslation":["夜猫子","睡懒觉的人","早睡的人","早起的人"]
+                }
+            ],
+            U2: [
+                {
+                    "question":"Charging high fees, the nursing home has a commitment（承诺） to provide the best possible care for the old people.",
+                    "options":["A. Command","B. Commitment","C. Commodity","D. Commission"],
+                    "correct":1,
+                    "translation":"这家养老院收费很高，但承诺为老年人提供尽可能好的护理。",
+                    "optionsTranslation":["命令","承诺","商品","佣金"]
+                },
+                {
+                    "question":"We should consider the possible harm generated by AI tools and take measures to counteract（抵消） any negative effects.",
+                    "options":["A. Act","B. Interact","C. Counteract","D. Enact"],
+                    "correct":2,
+                    "translation":"我们应该考虑人工智能工具可能造成的危害，并采取措施来________任何负面影响。",
+                    "optionsTranslation":["行动","互动","抵消","制定"]
+                },
+                {
+                    "question":"Today, what we need our education system to do is a radical（激进的） change that has never been so different and far-reaching in our history.",
+                    "options":["A. Radial","B. Radical","C. Rational","D. Racial"],
+                    "correct":1,
+                    "translation":"今天，我们需要我们的教育体系做出的是一项激进的变革，在我们的历史上从未有过如此不同和深远的变化。",
+                    "optionsTranslation":["放射状的","激进的","理性的","种族的"]
+                },
+                {
+                    "question":"The award was established in the last decade as a special distinction for eminent（杰出的） scholars in this field.",
+                    "options":["A. Imminent","B. Eminent","C. Immigrant","D. Emitting"],
+                    "correct":1,
+                    "translation":"该奖项在过去十年中为该领域的杰出学者设立了特别荣誉。",
+                    "optionsTranslation":["即将发生的","杰出的","移民","发射"]
+                },
+                {
+                    "question":"Currently, the priority for our department is to maintain（保持） the customer's confidence in our product.",
+                    "options":["A. Contain","B. Attain","C. Detain","D. Maintain"],
+                    "correct":3,
+                    "translation":"目前，我们部门的首要任务是保持客户对我们产品的信心。",
+                    "optionsTranslation":["包含","获得","拘留","保持"]
+                },
+                {
+                    "question":"Most students would actually relate to John, who admitted to having nodded off（打瞌睡） in the midst of（在...之中） the professor's boring lecture.",
+                    "options":["A. In the sense of","B. In the midst of","C. In spite of","D. In favor of"],
+                    "correct":1,
+                    "translation":"大多数学生实际上都能理解约翰，他在教授枯燥的讲课中承认自己打瞌睡了。",
+                    "optionsTranslation":["在...意义上","在...之中","尽管","支持"]
+                },
+                {
+                    "question":"For many office workers, movie watching is a good outlet（出口，发泄方式） for their pressure.",
+                    "options":["A. For","B. From","C. Over","D. Against"],
+                    "correct":0,
+                    "translation":"对于许多上班族来说，看电影是缓解压力的好方法。",
+                    "optionsTranslation":["对于","来自","超过","反对"]
+                },
+                {
+                    "question":"Nowadays, you don't have to queue up（排队等候） in the shops, as you can buy almost any product with just a few clicks of your mouse.",
+                    "options":["A. Up","B. Along","C. Out","D. On"],
+                    "correct":3,
+                    "translation":"如今，你不必在商店排队，因为你可以通过鼠标点击几下就能买到几乎所有商品。",
+                    "optionsTranslation":["向上","沿着","出去","在"]
+                },
+                {
+                    "question":"The manager suggests it should become a custom to give employees regular feedback on their work.",
+                    "options":["A. From","B. On","C. Over","D. Against"],
+                    "correct":1,
+                    "translation":"这位经理建议，给员工定期的工作反馈应该成为一种习惯。",
+                    "optionsTranslation":["来自","关于","超过","反对"]
+                },
+                {
+                    "question":"The government was planning to build a multi-deck parking structure（多层停车结构） adjacent（相邻） to the hospital.",
+                    "options":["A. In","B. Against","C. To","D. From"],
+                    "correct":2,
+                    "translation":"政府计划在医院附近建造一个多层停车结构。",
+                    "optionsTranslation":["在","反对","到","来自"]
+                },
+                {
+                    "question":"The [brochure]（宣传册） she takes from the tourist center offers a wide choice of hotels, apartments and holiday homes.",
+                    "options":["A. Photocopy","B. Magazine","C. Newsletter","D. Leaflet"],
+                    "correct":3,
+                    "translation":"她从旅游中心拿的________提供了广泛的酒店、公寓和度假屋选择。",
+                    "optionsTranslation":["复印","杂志","通讯","传单"]
+                },
+                {
+                    "question":"We should try to know the negative [connotations]（内涵） of the events.",
+                    "options":["A. Bias","B. Implication","C. Connection","D. Significance"],
+                    "correct":1,
+                    "translation":"我们应该努力了解这些事件的负面________。",
+                    "optionsTranslation":["偏见","含义","联系","意义"]
+                },
+                {
+                    "question":"The celebrity couple is making the most [elaborate]（精心制作的） preparations for their wedding in the 18th-century castle.",
+                    "options":["A. Expensive","B. Extinct","C. Exquisite","D. Exotic"],
+                    "correct":2,
+                    "translation":"这对名人夫妇正在为他们在18世纪城堡中的婚礼做最精心的准备。",
+                    "optionsTranslation":["昂贵的","灭绝的","精致的","异国情调的"]
+                },
+                {
+                    "question":"This machine has a [flexible]（灵活的） and user-friendly operation system convenient for young and advanced users alike.",
+                    "options":["A. Bendable","B. Comfortable","C. Adaptable","D. Fashionable"],
+                    "correct":2,
+                    "translation":"这台机器有一个________且用户友好的操作系统，方便年轻和高级用户使用。",
+                    "optionsTranslation":["可弯曲的","舒适的","适应性强的","时尚的"]
+                },
+                {
+                    "question":"The family photo she cherished for ten years occupied the most [prominent]（著名的） place in her living room.",
+                    "options":["A. Outstanding","B. Noticeable","C. Secret","D. Sacred"],
+                    "correct":1,
+                    "translation":"她珍藏了十年的家庭照片占据了她客厅最________的位置。",
+                    "optionsTranslation":["杰出的","明显的","秘密的","神圣的"]
+                }
+            ],
+            U3: [
+                {
+                    "question":"Mary's abrupt（突然的，意外的；粗鲁的，唐突的，（言语）生硬的；险峻）departure（背 离；离开，启程） from the press conference（新闻发布会） without any explanation caused a lot of speculation（投机，投机买卖；猜测，推测，推断） about what went wrong.",
+                    "options":["A. Abrupt","B. Corrupt","C. Interrupt","D. Erupt"],
+                    "correct":0,
+                    "translation":"玛丽突然离开新闻发布会，没有给出任何解释，这引发了关于出了什么问题的诸多猜测。",
+                    "optionsTranslation":["突然的","腐败的","打断","爆发"]
+                },
+                {
+                    "question":"The second speaker's main contention（看法，观点；争论，争吵；争夺，竞争） is that doctors should do more to encourage healthy lifestyle .",
+                    "options":["A. Contentment","B. Contention","C. Contest","D. Contestant"],
+                    "correct":1,
+                    "translation":"第二位演讲者的主要观点是医生应该更多地鼓励健康的生活方式。",
+                    "optionsTranslation":["满足","争论","比赛","参赛者"]
+                },
+                {
+                    "question":"Economists warn that enormous pressures in the region could build up, forcing people to emigrate（移居外国，移民；迫使（或帮助）......移居外国） eastwards to areas with more job opportunities.",
+                    "options":["A. Immigrate","B. Emigrate","C. Immigrant","D. Emigrant"],
+                    "correct":1,
+                    "translation":"经济学家警告说，该地区的巨大压力可能会积聚，迫使人们向东移居到有更多就业机会的地区。",
+                    "optionsTranslation":["移民","移居外国","移民","移居外国者"]
+                },
+                {
+                    "question":"The man wore a passive（消极的，被动的；被动语态的；（抵抗）非暴力的；） expression on his face and showed no sympathy to his wife.",
+                    "options":["A. Passing","B. Passive","C. Passionate","D. Passable"],
+                    "correct":1,
+                    "translation":"这个男人脸上带着________的表情，对他的妻子毫无同情心。",
+                    "optionsTranslation":["经过","消极的","热情的","可通行的"]
+                },
+                {
+                    "question":"The insurance policy provides comprehensive coverage（综合性的，全面的；有理解力的） for medical expenses, ensuring that the insured is protected in case of any unexpected health issues.",
+                    "options":["A. Average","B. Beverage","C. Storage","D. Coverage"],
+                    "correct":3,
+                    "translation":"保险政策为医疗费用提供全面的________，确保被保险人在出现任何意外健康问题时得到保护。",
+                    "optionsTranslation":["平均","饮料","储存","保险范围"]
+                },
+                {
+                    "question":"Prior to（在......之前，先于） starting their journey, the explorers made careful preparations and conducted extensive researches.",
+                    "options":["A. To","B. On","C. At","D. In"],
+                    "correct":0,
+                    "translation":"在开始他们的旅程之前，探险者们做了精心的准备并进行了广泛的研究。",
+                    "optionsTranslation":["在...之前","在...上","在","在"]
+                },
+                {
+                    "question":"It's not easy for him to accept the decision, but he is finally at peace（与...... 和谐相处；接受 （某事物）） with the reality.",
+                    "options":["A. Serenity","B. Calmness","C. Peace","D. Silence"],
+                    "correct":2,
+                    "translation":"他很难接受这个决定，但他最终还是接受了现实。",
+                    "optionsTranslation":["宁静","平静","和平","沉默"]
+                },
+                {
+                    "question":"The China-made airplane C919 departed from（离开；开出；从......出发） Shanghai Hongqiao International Airport, marking a significant milestone for the country's aviation industry.",
+                    "options":["A. Away","B. Off","C. From","D. At"],
+                    "correct":2,
+                    "translation":"中国制造的C919飞机从上海虹桥国际机场起飞，标志着中国航空业的一个重要里程碑。",
+                    "optionsTranslation":["离开","起飞","从","在"]
+                },
+                {
+                    "question":"The government made a solemn pledge that it would never concede any territory to other nations. (concede sth. to sb 意为 “把某物让给 / 割让给某人”)",
+                    "options":["A. For","B. In","C. By","D. To"],
+                    "correct":3,
+                    "translation":"政府庄严承诺永远不会向其他国家割让任何领土。",
+                    "optionsTranslation":["为了","在","通过","给"]
+                },
+                {
+                    "question":"Over the past 5 decades, he had developed strong loyalty to（对......的忠诚：指对某个人、 组织、国家或理念等的坚定） the Stewart family, and therefore became a true member of the family.",
+                    "options":["A. In","B. At","C. To","D. For"],
+                    "correct":2,
+                    "translation":"在过去50年里，他对斯图尔特家族培养了强烈的忠诚，因此成为了这个家族的真正一员。",
+                    "optionsTranslation":["在","在","对","为了"]
+                },
+                {
+                    "question":"He is a [mean] ungenerous（胸襟狭窄的；吝啬的；不充足的） person. He never spread his warmth to other people, not to mention the use of his car.",
+                    "options":["A. Inanimate","B. Unreliable","C. Ungenerous","D. Shameless"],
+                    "correct":2,
+                    "translation":"他是一个________的人。他从不向别人传递他的热情，更别提使用他的车了。",
+                    "optionsTranslation":["无生命的","不可靠的","吝啬的","无耻的"]
+                },
+                {
+                    "question":"This riddle was so complex that it [puzzled] perplexed（困惑的；不知所措的） even the most experienced puzzle solver in this team.",
+                    "options":["A. Preoccupied","B. Retorted","C. Soothed","D. Perplexed"],
+                    "correct":3,
+                    "translation":"这个谜题如此复杂，以至于它甚至让这个团队中最有经验的解谜者都感到困惑。",
+                    "optionsTranslation":["心不在焉","反驳","安慰","困惑"]
+                },
+                {
+                    "question":"The country experienced an economic [depression] downturn（（商业经济的）下降，衰退 期） in the 1930s, resulting in widespread unemployment, business failures, and financial hardships for its citizens.",
+                    "options":["A. Sadness","B. Pressure","C. Downturn","D. Frustration"],
+                    "correct":2,
+                    "translation":"这个国家在20世纪30年代经历了经济________，导致广泛的失业、企业倒闭以及公民的经济困难。",
+                    "optionsTranslation":["悲伤","压力","衰退","挫折"]
+                },
+                {
+                    "question":"Blue often conveys a sense of [tranquility] calmness because maybe we subconsciously associate the color with blue skies and oceans.",
+                    "options":["A. Ambition","B. Calmness","C. Confidence","D. Expectation"],
+                    "correct":1,
+                    "translation":"蓝色常常传达一种________的感觉，因为我们可能下意识地将这种颜色与蓝天和海洋联系在一起。",
+                    "optionsTranslation":["雄心","平静","自信","期待"]
+                },
+                {
+                    "question":"Steve Jobs built his own computer company [from scratch] with no prior basis （没有先验基 础）and became a multimillionaire before his thirtieth birthday.",
+                    "options":["A. Without any help","B. Making all his efforts","C. Using his own way","D. With no prior basis"],
+                    "correct":3,
+                    "translation":"史蒂夫·乔布斯从零开始建立了自己的电脑公司，在三十岁生日前就成为了百万富翁。",
+                    "optionsTranslation":["没有任何帮助","尽其所能","用自己的方法","没有先验基础"]
+                }
+            ],
+            U4: [
+                {
+                    "question":"The company has taken some measures to increase its ability to generate（产生，引起） more income.",
+                    "options":["A. Separate","B. Generate","C. Accelerate","D. Operate"],
+                    "correct":1,
+                    "translation":"公司采取了一些措施来提高其产生更多收入的能力。",
+                    "optionsTranslation":["分离","产生","加快","运转"]
+                },
+                {
+                    "question":"This soccer player has made a remarkable（显著的，非凡的） recovery considering mos other players would have been ruled out for the rest of the season.",
+                    "options":["A. Remarkable","B. Renewable","C. Reparable","D. Reliable"],
+                    "correct":0,
+                    "translation":"考虑到大多数其他球员本赛季都将被排除在外，这位足球运动员的________恢复令人瞩目。",
+                    "optionsTranslation":["显著的","可更新的","可修复的","可靠的"]
+                },
+                {
+                    "question":"In general, every household and every firm are motivated to maximize（取最大，极重视） the value associated with the resources and goods they control.",
+                    "options":["A. Maximize","B. Decentralize","C. Privatize","D. Victimize"],
+                    "correct":0,
+                    "translation":"一般来说，每个家庭和每个公司都有动机去最大化他们所控制的资源和商品的价值。",
+                    "optionsTranslation":["最大化","分散","私有化","使成为牺牲品"]
+                },
+                {
+                    "question":"This type of snake can produce the most potent（强有力的） poison known to us from the entire animal world. One bite from it has enough poison to kill 100 adult people.",
+                    "options":["A. Patent","B. Potent","C. Patient","D. Petition"],
+                    "correct":1,
+                    "translation":"这种蛇可以产生我们所知的整个动物界中最________的毒液。它的一口毒液足以杀死100名成年人。",
+                    "optionsTranslation":["专利","强有力的","耐心的","请愿"]
+                },
+                {
+                    "question":"According to the schedule, the competition will be preceded（在...之前发生） by two short vow speeches made by the representatives of judges and contestants.",
+                    "options":["A. Preceded","B. Conceded","C. Processed","D. Recessed"],
+                    "correct":0,
+                    "translation":"根据日程安排，比赛将由评委和参赛者代表的两个简短誓言演讲________。",
+                    "optionsTranslation":["先于","承认","处理","暂停"]
+                },
+                {
+                    "question":"The rescuing team that the government organized had to call off（取消） the search due to worsening weather.",
+                    "options":["A. Out","B. Up","C. Off","D. On"],
+                    "correct":2,
+                    "translation":"政府组织的救援队不得不因天气恶化而取消搜索。",
+                    "optionsTranslation":["出去","向上","取消","打开"]
+                },
+                {
+                    "question":"The new regulations were implemented in correspondence with（与... 一致） the recommendations provided by the expert panel.",
+                    "options":["A. From","B. With","C. Of","D. Between"],
+                    "correct":1,
+                    "translation":"新规定与专家小组提供的建议一致。",
+                    "optionsTranslation":["来自","与...一致","的","在...之间"]
+                },
+                {
+                    "question":"A teacher's job now is much more than to just impart knowledge about science and the humanities to（impart to 教授） students.",
+                    "options":["A. In","B. For","C. With","D. To"],
+                    "correct":3,
+                    "translation":"教师的工作不仅仅是向学生传授科学和人文的知识。",
+                    "optionsTranslation":["在","为了","和","给"]
+                },
+                {
+                    "question":"The final result of the election shows 90 percent in favor of（in favor of 赞同） the new president, compared to 10 percent against.",
+                    "options":["A. Case","B. Charge","C. Favor","D. Face"],
+                    "correct":2,
+                    "translation":"选举的最终结果表明，90%的人支持新总统，相比之下，只有10%的人反对。",
+                    "optionsTranslation":["案例","指控","支持","面对"]
+                },
+                {
+                    "question":"The testing sample, involving 400 sentences each of which contains at least one English name, is extracted at random（随机） from a huge language database.",
+                    "options":["A. At random","B. By chance","C. Out of order","D. On purpose"],
+                    "correct":0,
+                    "translation":"测试样本包含400个句子，每个句子至少包含一个英文名字，是从一个庞大的语言数据库中随机抽取的。",
+                    "optionsTranslation":["随机","偶然","无序","故意"]
+                },
+                {
+                    "question":"The speech given by the key speaker clearly evoked（引起）[provoked]（激怒，煽动） public awareness and social concern to these school kids.",
+                    "options":["A. Evolved","B. Revolved","C. Evoked","D. Revoked"],
+                    "correct":2,
+                    "translation":"主要演讲者所做的演讲清楚地唤起了这些学生的公众意识和社会关注。",
+                    "optionsTranslation":["进化","旋转","引起","撤销"]
+                },
+                {
+                    "question":"Although the three levels of the coursebooks are written by different authors, they go well as a well-organized [coherent]（连贯的） whole.",
+                    "options":["A. Well-organized","B. Complete","C. Relevant","D. Cooperative"],
+                    "correct":0,
+                    "translation":"尽管这三套课本是由不同作者编写的，但它们作为一个组织良好的________整体表现得很好。",
+                    "optionsTranslation":["组织良好的","完整的","相关的","合作的"]
+                },
+                {
+                    "question":"I hate to be straightforward [blunt]（钝的，直率的）, Frank, but your girlfriend seems to be quite insensitive to your feelings.",
+                    "options":["A. Tight-mouthed","B. Sharp-eyed","C. Straightforward","D. Carefree"],
+                    "correct":2,
+                    "translation":"弗兰克，我讨厌直截了当，但你的女朋友似乎对你的感受相当麻木。",
+                    "optionsTranslation":["守口如瓶","目光敏锐","直率的","无忧无虑的"]
+                },
+                {
+                    "question":"Professors should also try to provide necessary support for students who lacked belief [confidence]（信念） about belonging at such a top institution.",
+                    "options":["A. Insurance","B. Secret","C. Progress","D. Belief"],
+                    "correct":3,
+                    "translation":"教授们也应该努力为那些缺乏对属于这样一个顶尖机构的________的学生提供必要的支持。",
+                    "optionsTranslation":["保险","秘密","进步","信念"]
+                },
+                {
+                    "question":"After an absence of nearly ten years, the singer is once again catching public attention [in the spotlight]（在聚光灯下）， mainly due to her role in a movie this year.",
+                    "options":["A. Getting wide acknowledgement","B. Catching public attention","C. Receiving more assistance","D. Suffering heavy losses"],
+                    "correct":1,
+                    "translation":"在近十年的缺席后，这位歌手再次________，主要是因为她今年在一部电影中的角色。",
+                    "optionsTranslation":["得到广泛认可","引起公众关注","得到更多帮助","遭受重大损失"]
+                }
+            ],
+            U5: [
+                {
+                    "question":"Retirees in this company can receive a substantial payment in the form（形式） of stocks and bonuses.",
+                    "options":["A. Form","B. Formation","C. Formula","D. Format"],
+                    "correct":0,
+                    "translation":"这家公司的退休人员可以以股票和奖金的形式获得可观的报酬。",
+                    "optionsTranslation":["形式","形成","公式","格式"]
+                },
+                {
+                    "question":"The anniversary should be commemorated（纪念(commemorate 的过去式和过去分词)） to highlight the importance of peace and spirit of patriotism.",
+                    "options":["A. Commemorated","B. Compiled","C. Commuted","D. Composed"],
+                    "correct":0,
+                    "translation":"应该纪念这个纪念日，以强调和平和爱国主义精神的重要性。",
+                    "optionsTranslation":["纪念","编译","通勤","组成"]
+                },
+                {
+                    "question":"These refugees are in a miserable state, ragged（衣衫褴褛的）, homeless, half-starved, unloved and exhausted.",
+                    "options":["A. Ragged","B. Raged","C. Ranged","D. Ranked"],
+                    "correct":0,
+                    "translation":"这些难民处境悲惨，衣衫褴褛，无家可归，饥肠辘辘，没有人爱，精疲力竭。",
+                    "optionsTranslation":["衣衫褴褛的","愤怒的","排列","排名"]
+                },
+                {
+                    "question":"A careful female observer can easily perceive（感知） a note of unhappiness in her voice.",
+                    "options":["A. Perceive","B. Receive","C. Deceive","D. Conceive"],
+                    "correct":0,
+                    "translation":"细心的女性观察者很容易从她的声音中觉察出不愉快的声音。",
+                    "optionsTranslation":["感知","接收","欺骗","构想"]
+                },
+                {
+                    "question":"If you continue to make fun of others like that, you will forfeit（丧失） the good opinion of everyone.",
+                    "options":["A. Foster","B. Fortify","C. Forge","D. Forfeit"],
+                    "correct":3,
+                    "translation":"如果你继续那样取笑别人，你会失去每个人的尊重。",
+                    "optionsTranslation":["培养","加强","伪造","丧失"]
+                },
+                {
+                    "question":"It is the CEO's duty to preside over（主持：指负责管理或领导某个会议、组织等。统治：指 在某个特定时间或活动期间负责管理一个国家、公司等。） the board meeting to discuss important strategies and decisions.",
+                    "options":["A. On","B. For","C. With","D. Over"],
+                    "correct":3,
+                    "translation":"首席执行官的职责是主持董事会会议讨论重要的战略和决策。",
+                    "optionsTranslation":["在","为了","和","主持"]
+                },
+                {
+                    "question":"When the teacher left the room, the student saw a bunch of（一堆） keys hung from his belt.",
+                    "options":["A. Bunch","B. Bulk","C. Battery","D. Branch"],
+                    "correct":0,
+                    "translation":"当老师离开房间时，学生看到他的腰带上挂着一串钥匙。",
+                    "optionsTranslation":["一串","大量","电池","树枝"]
+                },
+                {
+                    "question":"After a year's trial, David Johnson was finally convicted of（判定某人犯有罪行） murder and sentenced to life imprisonment.",
+                    "options":["A. As","B. Over","C. On","D. Of"],
+                    "correct":3,
+                    "translation":"经过一年的审判，大卫·约翰逊最终被判谋杀罪名成立，并被判处终身监禁。",
+                    "optionsTranslation":["作为","超过","在","犯有"]
+                },
+                {
+                    "question":"As difficult as it looks, one may be surprised to find that there are a/an multitude（许多） of ways to tackle this issue.",
+                    "options":["A. Multitude","B. Altitude","C. Latitude","D. Attitude"],
+                    "correct":0,
+                    "translation":"尽管看起来很难，但人们可能会惊讶地发现有很多方法可以解决这个问题。",
+                    "optionsTranslation":["许多","高度","纬度","态度"]
+                },
+                {
+                    "question":"This company is ready to roll out（推出、推广或展开：描述新产品、服务、计划等的推出过程） a trial program to spur sales of electric automobiles and vehicles.",
+                    "options":["A. Over","B. Up","C. Out","D. Away"],
+                    "correct":2,
+                    "translation":"这家公司准备推出一个试验计划，以刺激电动汽车和汽车的销售。",
+                    "optionsTranslation":["超过","向上","推出","离开"]
+                },
+                {
+                    "question":"Compared with other industrial nations, the economic recession in Germany has been comparatively moderate [mild]（温和的） over the past 3 years.",
+                    "options":["A. Light","B. Limited","C. Temperate","D. Moderate"],
+                    "correct":3,
+                    "translation":"与其他工业国家相比，德国在过去3年的经济衰退相对较为温和。",
+                    "optionsTranslation":["轻的","有限的","温和的","温和的"]
+                },
+                {
+                    "question":"Rescue attempts have been prevented [hampered]（阻碍） by the bad weather and fears of another earthquake.",
+                    "options":["A. Persisted","B. Prevented","C. Persevered","D. Presented"],
+                    "correct":1,
+                    "translation":"救援尝试因恶劣天气和对另一次地震的恐惧而受阻。",
+                    "optionsTranslation":["坚持","阻止","坚持","提出"]
+                },
+                {
+                    "question":"The detective went to the ball hiding true identity（个性，本体） [in disguise]（伪装的） to observe the suspects without being recognized.",
+                    "options":["A. Hiding true identity","B. Making a face","C. Playing down","D. Putting on dancing shoes"],
+                    "correct":0,
+                    "translation":"侦探伪装成去参加舞会的人，以观察嫌疑人而不被认出来。",
+                    "optionsTranslation":["隐藏真实身份","做鬼脸","轻描淡写","穿上舞鞋"]
+                },
+                {
+                    "question":"In her current position, Ann broke through the invisible（无形的） barrier [glass ceiling]（是指在公司企业和机关团体中，限制某些人口群体（女性、少数民族）晋升到高级职位的障碍） as the first woman to reach senior management level in the company.",
+                    "options":["A. Social network","B. Peer isolation","C. Invisible barrier","D. Racial discrimination"],
+                    "correct":2,
+                    "translation":"在她目前的职位上，安作为公司中第一位达到高级管理职位的女性，打破了无形的障碍。",
+                    "optionsTranslation":["社交网络","同伴孤立","无形的障碍","种族歧视"]
+                },
+                {
+                    "question":"The woman couldn’t get used to the noise and quick pace [hustle and bustle]（繁忙和喧 嚣） of city life, so she decided to return to her hometown.",
+                    "options":["A. Harmful environment","B. Stress and pressure","C. Fierce competition","D. Noise and quick pace"],
+                    "correct":3,
+                    "translation":"这位女士无法适应城市的喧嚣和快节奏，因此她决定回到家乡。",
+                    "optionsTranslation":["有害的环境","压力和压力","激烈的竞争","噪音和快节奏"]
+                }
+            ],
+            U6: [
+                {
+                    "question":"Since John was a child, he had always ________ to become the first black president of his country.",
+                    "options":["A. Conspired","B. Aspired","C. Inspired","D. Expired"],
+                    "correct":1,
+                    "translation":"约翰从小就渴望成为他国家的第一位黑人总统。",
+                    "optionsTranslation":["阴谋","渴望","激励","过期"]
+                },
+                {
+                    "question":"The hikers reached the summit after a challenging climb, where they were rewarded with breathtaking views of the surrounding landscape from the high ______.",
+                    "options":["A. Elevator","B. Elevation","C. Escalator","D. Escalation"],
+                    "correct":1,
+                    "translation":"徒步旅行者在艰难的攀登后到达山顶，在那里他们从高处欣赏到了令人惊叹的周围景观。",
+                    "optionsTranslation":["电梯","海拔","自动扶梯","升级"]
+                },
+                {
+                    "question":"There is an apparent _________ between the needs of workers and those of bosses, thus conflicts arise every now and then.",
+                    "options":["A. Contradiction","B. Contract","C. Contribution","D. Contraction"],
+                    "correct":0,
+                    "translation":"工人和老板的需求之间存在着明显的矛盾，因此冲突时有发生。",
+                    "optionsTranslation":["矛盾","合同","贡献","收缩"]
+                },
+                {
+                    "question":"It's difficult to be enrolled in that university, which means it will ___________ all the students who fail to reach its requirements.",
+                    "options":["A. Include","B. Conclude","C. Exclude","D. Clue"],
+                    "correct":2,
+                    "translation":"进入那所大学很难，这意味着它将排除所有未能达到其要求的学生。",
+                    "optionsTranslation":["包括","结束","排除","线索"]
+                },
+                {
+                    "question":"The boss______________ that Lily was responsible for the mistake, but it turned out that he was wrong.",
+                    "options":["A. Resumed","B. Consumed","C. Presumed","D. Costumed"],
+                    "correct":2,
+                    "translation":"老板认为莉莉应对这个错误负责，但结果证明他是错的。",
+                    "optionsTranslation":["恢复","消耗","假定","装扮"]
+                },
+                {
+                    "question":"Quite many adolescents nowadays constrain themselves ________ expressing true feelings to their parents due to the generation gap.",
+                    "options":["A. In","B. From","C. By","D. Through"],
+                    "correct":1,
+                    "translation":"如今，许多青少年由于代沟而限制自己向父母表达真实感受。",
+                    "optionsTranslation":["在","从","通过","通过"]
+                },
+                {
+                    "question":"Many flight attendants, despite the initial excitement and enthusiasm of travelling around the world, gradually grow _______ flights.",
+                    "options":["A. Out of","B. Weary of","C. Away from","D. Apart from"],
+                    "correct":1,
+                    "translation":"许多空乘人员，尽管最初对环游世界感到兴奋和热情，但逐渐对航班感到厌倦。",
+                    "optionsTranslation":["离开","厌倦","远离","除了"]
+                },
+                {
+                    "question":"Readers familiar _____________ English literature will find this movie contains a lot of elements from Shakespeare's works.",
+                    "options":["A. In","B. At","C. To","D. With"],
+                    "correct":3,
+                    "translation":"熟悉英语文学的读者会发现这部电影包含了许多莎士比亚作品的元素。",
+                    "optionsTranslation":["在","在","到","与"]
+                },
+                {
+                    "question":"The orange used for this drink is a branch of the sweet oranges that are indigenous _______ East Asia.",
+                    "options":["A. In","B. Of","C. To","D. With"],
+                    "correct":2,
+                    "translation":"用于这种饮料的橙子是原产于东亚的甜橙的一个分支。",
+                    "optionsTranslation":["在","的","到","与"]
+                },
+                {
+                    "question":"The show is very important so the fashion designer is very particular _______ the colors they choose.",
+                    "options":["A. For","B. In","C. To","D. About"],
+                    "correct":3,
+                    "translation":"这个节目非常重要，所以时装设计师对颜色的选择非常挑剔。",
+                    "optionsTranslation":["为了","在","到","关于"]
+                },
+                {
+                    "question":"The [famous] artist's latest masterpiece fascinated audience around the world.",
+                    "options":["A. Notorious","B. Renowned","C. Fashionable","D. Outdated"],
+                    "correct":1,
+                    "translation":"这位[著名的]艺术家的最新杰作吸引了全世界的观众。",
+                    "optionsTranslation":["臭名昭著的","著名的","时髦的","过时的"]
+                },
+                {
+                    "question":"For almost all its history, the study of modular arithmetic has been driven purely by its [inherent]（内在） beauty and by human curiosity.",
+                    "options":["A. Intricate","B. Intrinsic","C. Intuitive","D. Intriguing"],
+                    "correct":1,
+                    "translation":"几乎在其整个历史中，对模运算的研究纯粹是由其内在的美和人类的好奇心驱动的。",
+                    "optionsTranslation":["复杂的","内在的","直觉的","引人入胜的"]
+                },
+                {
+                    "question":"As a senior clerk of the company, most of his jobs are essentially desk-bound, and [clerical]（文书的，神职人员的） or managerial in nature.",
+                    "options":["A. Numerical","B. Administrative","C. Academic","D. Technical"],
+                    "correct":1,
+                    "translation":"作为公司的高级职员，他的大部分工作本质上是文书工作，具有[文书的]或管理性质。",
+                    "optionsTranslation":["数字的","行政的","学术的","技术的"]
+                },
+                {
+                    "question":"You do not need a thorough change, but you will need to [refine]（完善） some of your teaching methods.",
+                    "options":["A. Implement","B. Alter","C. Improve","D. Apply"],
+                    "correct":2,
+                    "translation":"你不需要彻底的改变，但你需要完善一些教学方法。",
+                    "optionsTranslation":["实施","改变","改进","应用"]
+                },
+                {
+                    "question":"Joe, the youngest child in the family, is undoubtedly [the apple of his parents' eye].",
+                    "options":["A. His parents' apple","B. His parents' treasure","C. His parents' eye","D. His parents' property"],
+                    "correct":1,
+                    "translation":"乔是家里最小的孩子，无疑是父母的掌上明珠。",
+                    "optionsTranslation":["父母的苹果","父母的宝贝","父母的眼睛","父母的财产"]
+                }
+            ],
+            U7: [
+                {
+                    "question":"A few short chapters are _______ to specific aspects of university life in the book.",
+                    "options":["A. Dedicational","B. Dedicative","C. Dedicate","D. Dedicated"],
+                    "correct":3,
+                    "translation":"书中的一些简短章节专门讨论了大学生活的特定方面。",
+                    "optionsTranslation":["奉献的","奉献的","奉献","专门的"]
+                },
+                {
+                    "question":"This meeting participant approaches the international problem from a completely different ________.",
+                    "options":["A. Perceptive","B. Perspective","C. Prospective","D. Prospect"],
+                    "correct":1,
+                    "translation":"这位会议参与者从一个完全不同的________来处理国际问题。",
+                    "optionsTranslation":["感知的","视角","预期的","前景"]
+                },
+                {
+                    "question":"The new technology is all very cool, though some experts are likely to _________ concerns that it can invade privacy.",
+                    "options":["A. Rise","B. Raise","C. Raid","D. Rack"],
+                    "correct":1,
+                    "translation":"尽管一些专家可能会_________它侵犯隐私的担忧，但这项新技术确实很酷。",
+                    "optionsTranslation":["上升","提出","袭击","折磨"]
+                },
+                {
+                    "question":"Standing on the top of the hill, the climbers could see a(n) ______ city skyline against the setting sun, creating a picturesque view.",
+                    "options":["A. Resistant","B. Instant","C. Distant","D. Constant"],
+                    "correct":2,
+                    "translation":"站在山顶上，登山者可以看到远处的城市天际线在夕阳的映照下，构成了一幅美丽的画面。",
+                    "optionsTranslation":["抵抗的","即时的","遥远的","持续的"]
+                },
+                {
+                    "question":"This herbal(草药的) spray(喷雾) can____________ the mosquitoes(蚊子) and keep them at bay(防止某事物靠近或接近), so it is always a hot seller.",
+                    "options":["A. Propel","B. Compel","C. Expel","D. Repel"],
+                    "correct":3,
+                    "translation":"这种草药喷雾可以________蚊子并使它们远离，因此它总是畅销货。",
+                    "optionsTranslation":["推进","强迫","驱逐","驱赶"]
+                },
+                {
+                    "question":"Once _________ sail the 300 passengers found themselves crowded into a substandard cruise ship.",
+                    "options":["A. Under","B. Through","C. Via","D. By"],
+                    "correct":0,
+                    "translation":"一旦________帆，300名乘客发现自己挤在了一艘次标准的游轮上。",
+                    "optionsTranslation":["在航行中","通过","经由","通过"]
+                },
+                {
+                    "question":"The factory was closed for failing to comply ______ government safety rules in the past four years.",
+                    "options":["A. On","B. To","C. By","D. With"],
+                    "correct":3,
+                    "translation":"这家工厂因在过去四年中未能遵守政府的安全规定而被关闭。",
+                    "optionsTranslation":["在","到","通过","遵守"]
+                },
+                {
+                    "question":"There is still an opportunity for our team to win the game, only if all of us can _______ the courage to take it.",
+                    "options":["A. Cheer up","B. Tear up","C. Summon up","D. Clean up"],
+                    "correct":2,
+                    "translation":"我们队仍有赢得比赛的机会，只要我们所有人都能鼓起勇气去抓住它。",
+                    "optionsTranslation":["振作起来","撕毁","鼓起","清理"]
+                },
+                {
+                    "question":"The country's economy is currently _______ deficit, with government expenditures exceeding its revenue.",
+                    "options":["A. In","B. Under","C. Below","D. Of"],
+                    "correct":0,
+                    "translation":"该国经济目前处于赤字状态，政府支出超过其收入。",
+                    "optionsTranslation":["处于","在","低于","的"]
+                },
+                {
+                    "question":"They are worried that this problem will linger ______ for a long time unless both sides are willing to talk and make peace.",
+                    "options":["A. On","B. Away","C. With","D. Around"],
+                    "correct":3,
+                    "translation":"他们担心，除非双方愿意坐下来谈，和平解决问题，否则这个问题将会长期存在。",
+                    "optionsTranslation":["在","离开","和","周围"]
+                },
+                {
+                    "question":"This project shows David has the brain and ability to [graduate] from a common worker to a high official in the company.（这个项目表明大卫有头脑和能力从一个普通工人升到公司的高级 官员）",
+                    "options":["A. Leave campus","B. Finish university studies","C. Train himself","D. Change himself"],
+                    "correct":3,
+                    "translation":"这个项目表明大卫有头脑和能力从一个普通工人升到公司的高级官员。",
+                    "optionsTranslation":["离开校园","完成大学学业","训练自己","改变自己"]
+                },
+                {
+                    "question":"Mao Dun Literature Prize is one of the most [prestigious]（著名的） literary awards in China.",
+                    "options":["A. Reputable","B. Notorious","C. Remarkable","D. Glorious"],
+                    "correct":0,
+                    "translation":"茅盾文学奖是中国最著名的文学奖项之一。",
+                    "optionsTranslation":["声誉好的","臭名昭著的","非凡的","辉煌的"]
+                },
+                {
+                    "question":"The experienced detective was surprised that the suspect left his gun [in plain sight]（明目张 胆，在一个容易被看到的地方）.",
+                    "options":["A. Easy to be noticed","B. Easy to be used","C. Hidden in a dark place","D. Hidden in a proper place"],
+                    "correct":0,
+                    "translation":"这位经验丰富的侦探惊讶地发现，嫌疑人把枪留在了一个显而易见的地方。",
+                    "optionsTranslation":["容易被注意到","容易被使用","藏在黑暗的地方","藏在合适的地方"]
+                },
+                {
+                    "question":"The local people tried [cultivating]（培养） the special beans brought from the western part of the country.",
+                    "options":["A. Nurturing","B. Accumulating","C. Generating","D. Processing"],
+                    "correct":0,
+                    "translation":"当地人试图培养从该国西部带来的特殊豆子。",
+                    "optionsTranslation":["培养","积累","产生","加工"]
+                },
+                {
+                    "question":"After completing the renovation, they were left with a large amount of construction waste to be taken care of, so they hired a company to [handle its disposal] properly.（装修完成后，他们留下了大量的建筑垃圾需要处理，所以他们聘请了一家公司来妥善处理）",
+                    "options":["A. Make use of the resources","B. Evaluate the value","C. Get rid of the waste","D. Rebalance the budget"],
+                    "correct":2,
+                    "translation":"装修完成后，他们留下了大量的建筑垃圾需要处理，所以他们聘请了一家公司来妥善处理。",
+                    "optionsTranslation":["利用资源","评估价值","处理垃圾","重新平衡预算"]
+                }
+            ],
+            U8: [
+                {
+                    "question":"There are only two powers in the world, the sword and the pen; and in the end the former is always conquered by the ________.",
+                    "options":["A. Late","B. Later","C. Latter","D. Latest"],
+                    "correct":2,
+                    "translation":"世界上只有两种力量，剑和笔；最终，前者总是被后者征服。",
+                    "optionsTranslation":["迟到的","稍后的","后者的","最新的"]
+                },
+                {
+                    "question":"The night sky ______ with countless beautiful stars, creating a breathtaking view that filled their hearts with awe and wonder.",
+                    "options":["A. Glanced","B. Glimpsed","C. Glided","D. Glittered"],
+                    "correct":3,
+                    "translation":"夜空________着无数美丽的星星，形成了一幅令人惊叹的景象，让他们的内心充满了敬畏和好奇。",
+                    "optionsTranslation":["一瞥","瞥见","滑动","闪耀"]
+                },
+                {
+                    "question":"In a hurry to leave the room, Nancy _________ her backpack and put some books and stuff inside it.",
+                    "options":["A. Gripped","B. Grinned","C. Grabbed","D. Grinded"],
+                    "correct":2,
+                    "translation":"急于离开房间，南希________她的背包，把一些书和其他东西放了进去。",
+                    "optionsTranslation":["紧握","咧嘴笑","抓起","磨碎"]
+                },
+                {
+                    "question":"Global environmental problems, such as global warming and ocean pollution, should be dealt with through international cooperation, rather than _______ action.",
+                    "options":["A. Unilateral","B. Bilateral","C. Multilateral","D. Collateral"],
+                    "correct":0,
+                    "translation":"全球环境问题，如全球变暖和海洋污染，应该通过国际合作来解决，而不是单方面的行动。",
+                    "optionsTranslation":["单方面的","双边的","多边的","辅助的"]
+                },
+                {
+                    "question":"The debater calmly and confidently _________ the opponent's claim with logical reasoning and supporting evidence.",
+                    "options":["A. Refused","B. Refuted","C. Rejected","D. Resisted"],
+                    "correct":1,
+                    "translation":"辩论者冷静而自信地用逻辑推理和有力证据_________了对方的主张。",
+                    "optionsTranslation":["拒绝","驳斥","拒绝","抵抗"]
+                },
+                {
+                    "question":"Although it was tough, the negotiation about the border has been conducted ________ a positive manner.",
+                    "options":["A. By","B. To","C. At","D. In"],
+                    "correct":3,
+                    "translation":"尽管很艰难，但关于边界的谈判还是以积极的方式进行了。",
+                    "optionsTranslation":["通过","到","在","以"]
+                },
+                {
+                    "question":"Unexpectedly, the judge has issued a warrant __________ the arrest of the suspect.",
+                    "options":["A. Against","B. For","C. To","D. At"],
+                    "correct":1,
+                    "translation":"出乎意料的是，法官已经签发了逮捕嫌疑人的________。",
+                    "optionsTranslation":["反对","为了","给","在"]
+                },
+                {
+                    "question":"After years of preparation and training, the team began their expedition _______ earnest, determined to conquer the highest mountain of the area.",
+                    "options":["A. Of","B. For","C. At","D. In"],
+                    "correct":1,
+                    "translation":"经过多年的准备和训练，该队开始认真地进行探险，决心征服该地区的最高峰。",
+                    "optionsTranslation":["的","为了","在","在"]
+                },
+                {
+                    "question":"The artist always tried breaking __________ convention in everything she made, ignoring all the accepted norms of her contemporaries.",
+                    "options":["A. Down","B. Into","C. Away","D. With"],
+                    "correct":3,
+                    "translation":"这位艺术家总是试图打破传统，在她所做的一切中，无视当代人所接受的所有规范。",
+                    "optionsTranslation":["向下","进入","离开","与"]
+                },
+                {
+                    "question":"The public is accusing this company of having prejudice ________ the female workforce.",
+                    "options":["A. Against","B. Over","C. For","D. To"],
+                    "correct":0,
+                    "translation":"公众指责这家公司对女工有偏见。",
+                    "optionsTranslation":["反对","超过","支持","给"]
+                },
+                {
+                    "question":"The [sink] in the number of heart disease is largely due to the measures taken by governments in diet.",
+                    "options":["A. Decline","B. Decay","C. Defeat","D. Deposit"],
+                    "correct":0,
+                    "translation":"心脏病发病率的[下降]在很大程度上是由于政府在饮食方面采取的措施。",
+                    "optionsTranslation":["下降","腐烂","失败","沉积"]
+                },
+                {
+                    "question":"The employees on oil drilling platforms are given quite decent salaries, but we are worried that the [isolated] working environment could lead to psychological problems.",
+                    "options":["A. Unsociable","B. Unbearable","C. Enclosed","D. Entailed"],
+                    "correct":2,
+                    "translation":"在石油钻井平台上工作的员工得到了相当可观的薪水，但我们担心[封闭的]工作环境可能导致心理问题。",
+                    "optionsTranslation":["不社交的","无法忍受的","封闭的","导致"]
+                },
+                {
+                    "question":"There appears to be another [outbreak] of sickness among the animals living in the rainforest.",
+                    "options":["A. Outcome","B. Outset","C. Outlook","D. Outburst"],
+                    "correct":3,
+                    "translation":"在雨林中生活的动物们似乎又爆发了一场疾病。",
+                    "optionsTranslation":["结果","开始","前景","爆发"]
+                },
+                {
+                    "question":"The forthcoming [fortnight] presents the first major test for the new young CEO of the company.",
+                    "options":["A. One week","B. One month","C. Two weeks","D. Two months"],
+                    "correct":2,
+                    "translation":"即将到来的[两周]是公司新年轻首席执行官面临的第一次重大考验。",
+                    "optionsTranslation":["一周","一个月","两周","两个月"]
+                },
+                {
+                    "question":"Shenzhen, a small seaside village in Guangdong Province, has [mushroomed] to a crowded city of over 10 million people in the past four decades.",
+                    "options":["A. Suddenly shrank","B. Quickly developed","C. Immediately converted","D. Completely assembled"],
+                    "correct":1,
+                    "translation":"深圳，广东省的一个小海边村庄，在过去的四十年里已经[迅速发展]成为一个拥有超过1000万人口的拥挤城市。",
+                    "optionsTranslation":["突然缩小","迅速发展","立即转换","完全组装"]
+                }
+            ],
+            U9: [
+                {
+                    "question":"If you want to cite（引用） someone’s remarks（备注） as expert testimony（专家证词：在 法庭上由专家提供的证词和科学证据）, make sure it is from a ________ source.",
+                    "options":["A. Credit","B. Credibility","C. Credible","D. Creditable"],
+                    "correct":2,
+                    "translation":"如果你想引用某人的言论作为专家证词，请确保它来自一个________来源。",
+                    "optionsTranslation":["信贷","信誉","可信的","值得称道的"]
+                },
+                {
+                    "question":"When travelling around China, you will find that people speak the same language, Chinese, although in very different _________ dialects（方言）.",
+                    "options":["A. Relative","B. Relevant","C. Regional","D. Religious"],
+                    "correct":2,
+                    "translation":"在中国旅行时，你会发现人们都说同一种语言，中文，尽管方言差异很大。",
+                    "optionsTranslation":["相对的","相关的","区域的","宗教的"]
+                },
+                {
+                    "question":"For a moment I was blinded by（被什么蒙蔽，睁不开眼睛） the _____ of headlights coming towards me.",
+                    "options":["A. Glare","B. Gleam","C. Glimmer","D. Glitter"],
+                    "correct":0,
+                    "translation":"有一刻，我被迎面而来的车灯的______刺得睁不开眼。",
+                    "optionsTranslation":["眩光","一线光","微光","闪光"]
+                },
+                {
+                    "question":"The new interactive（互动） learning platform（平台） provides a highly ______ experience for students, offering engaging（参与） content that enhances their understanding and knowledge in various subjects.",
+                    "options":["A. Inductive","B. Reductional","C. Deductive","D. Educational"],
+                    "correct":3,
+                    "translation":"这个新的互动学习平台为学生提供了一个高度________的学习体验，提供引人入胜的内容，增强他们对各个学科的理解和知识。",
+                    "optionsTranslation":["归纳的","减数的","演绎的","教育的"]
+                },
+                {
+                    "question":"Let's warm up by placing（place 放置v.） hands on shoulders and move elbows（手肘部，急弯） up, back, and down, in a _______ motion.",
+                    "options":["A. Circus","B. Circuit","C. Circulate","D. Circular"],
+                    "correct":3,
+                    "translation":"让我们通过把手放在肩膀上，手肘向上、向后和向下做________运动来热身。",
+                    "optionsTranslation":["马戏团","电路","循环","圆形"]
+                },
+                {
+                    "question":"After graduation, John rent a small apartment for its proximity【(在时间、空间、关系上)n. 靠近，亲近】 ___________ his workplace",
+                    "options":["A. For","B. In","C. At","D. To"],
+                    "correct":3,
+                    "translation":"毕业后，约翰租了一间小公寓，因为它靠近他的工作地点。",
+                    "optionsTranslation":["为了","在","在","到"]
+                },
+                {
+                    "question":"In _________ of what you think about him personally, his reformations（改革） have been proved to be effective.",
+                    "options":["A. View","B. Spite","C. Case","D. Terms"],
+                    "correct":1,
+                    "translation":"尽管你对他个人的看法如何，他的改革已被证明是有效的。",
+                    "optionsTranslation":["观点","尽管","案例","条款"]
+                },
+                {
+                    "question":"We always hope that our energy and memory will never fade __________ as we become old.",
+                    "options":["A. In","B. Down","C. Up","D. Away"],
+                    "correct":3,
+                    "translation":"我们总是希望我们的精力和记忆随着年龄的增长而永不__________。",
+                    "optionsTranslation":["在","向下","向上","消逝"]
+                },
+                {
+                    "question":"John finally agreed to preside（主持） _______ the reading club since there was no one else who wanted to lead the meetings.",
+                    "options":["A. Over","B. On","C. In","D. For"],
+                    "correct":0,
+                    "translation":"约翰最终同意主持读书会，因为没有其他人愿意主持会议。",
+                    "optionsTranslation":["主持","在","在","为了"]
+                },
+                {
+                    "question":"The deviation（偏差） of their action ______ the original plan made us completely confused.",
+                    "options":["A. On","B. From","C. In","D. At"],
+                    "correct":1,
+                    "translation":"他们的行动与原计划的偏差让我们完全困惑。",
+                    "optionsTranslation":["在","从","在","在"]
+                },
+                {
+                    "question":"The performance was definitely [sensational（轰动的，激动人心的）], leaving the audience in awe（敬畏，惊叹）.",
+                    "options":["A. Sentimental","B. Sensible","C. Breath taking","D. Breathable"],
+                    "correct":2,
+                    "translation":"这场表演无疑是[轰动的]，让观众惊叹不已。",
+                    "optionsTranslation":["情感的","理智的","令人惊叹的","透气的"]
+                },
+                {
+                    "question":"This essay is so loose（零散的，宽松的） and [obscure（难以说清楚的，模糊的）] that it is difficult to make out what he is trying to say.",
+                    "options":["A. Unclear","B. Unknown","C. Mysterious","D. Notorious"],
+                    "correct":0,
+                    "translation":"这篇论文如此零散和[模糊]，以至于很难理解他想表达什么。",
+                    "optionsTranslation":["不清楚的","未知的","神秘的","臭名昭著的"]
+                },
+                {
+                    "question":"The seedlings（幼苗） of [cereal（谷类的，谷物）] crops began to grow after the rain, which was what the farmers had expected for a long time.",
+                    "options":["A. Vegetable","B. Fruit","C. Grain","D. Plant"],
+                    "correct":2,
+                    "translation":"谷物作物的幼苗在雨后开始生长，这正是农民们期待已久的。",
+                    "optionsTranslation":["蔬菜","水果","谷物","植物"]
+                },
+                {
+                    "question":"After a careful investigation, the government decided to [renovate（修复）] the old house into a cultural（与文化有关的，文艺的） place.",
+                    "options":["A. Restore","B. Recover","C. Refresh","D. Revise"],
+                    "correct":0,
+                    "translation":"经过仔细调查，政府决定将这座老房子[修复]成一个文化场所。",
+                    "optionsTranslation":["恢复","恢复","恢复精神","修订"]
+                },
+                {
+                    "question":"During the meeting, nobody wanted to talk about the budget cuts, which was the [elephant in the room（房间里的大象：无法忽视的重大问题或议题：指人们避免讨论或承认的明显的重大问题或议题）] that affected（影响） everyone's job security.",
+                    "options":["A. Most important topic","B. Significant but uncomfortable topic","C. Obvious and dangerous topic","D. Unimportant but necessary topic"],
+                    "correct":1,
+                    "translation":"在会议期间，没有人想谈论预算削减问题，这是一个影响每个人工作安全的[房间里的大象]。",
+                    "optionsTranslation":["最重要的主题","重要但不舒服的主题","明显且危险的主题","不重要但必要的主题"]
+                }
+            ],
+            U10: [
+                {
+                    "question":"Despite the reported looming（迫在眉睫的） prospect（可能，成功机会）, the CEO expresses the cautious _______ about the investment.",
+                    "options":["A. Optimism","B. Optimum","C. Optimist","D. Optician"],
+                    "correct":0,
+                    "translation":"尽管有报道说前景迫在眉睫，但首席执行官对投资持谨慎的________态度。",
+                    "optionsTranslation":["乐观主义","最佳状态","乐观主义者","眼镜商"]
+                },
+                {
+                    "question":"Generally speaking, young people tend to be more aggressive（激进的） while the old are more _______.",
+                    "options":["A. Conserve","B. Conservative","C. Conservation","D. Conserving"],
+                    "correct":1,
+                    "translation":"一般来说，年轻人倾向于更加激进，而老年人则更加________。",
+                    "optionsTranslation":["保存","保守的","保护","保存中"]
+                },
+                {
+                    "question":"Whether there should be commercial ___________________ of the natural resources in the country is still on hot discussion in the meeting.",
+                    "options":["A. Implementation","B. Limitation","C. Speculation","D. Exploitation"],
+                    "correct":3,
+                    "translation":"这个国家的自然资源是否应该进行商业开发仍在会议上激烈讨论。",
+                    "optionsTranslation":["实施","限制","投机","开发"]
+                },
+                {
+                    "question":"These students have difficulty in accomplishing their goals, as they do not have the ______ motivation to push themselves.",
+                    "options":["A. Intricate","B. Introverted","C. Intrinsic","D. Introspective"],
+                    "correct":2,
+                    "translation":"这些学生很难实现他们的目标，因为他们没有推动自己的________动力。",
+                    "optionsTranslation":["复杂的","内向的","内在的","内省的"]
+                },
+                {
+                    "question":"After the _____ of last week's defeat, the Yankees were back on form and wanted to win their honor back.",
+                    "options":["A. Humidity","B. Humility","C. Humiliation","D. Humanity"],
+                    "correct":2,
+                    "translation":"在上周失败的________之后，洋基队恢复了状态，想要赢回他们的荣誉。",
+                    "optionsTranslation":["湿度","谦逊","羞辱","人性"]
+                },
+                {
+                    "question":"The reason for my recommendation is that this film gives us a peep _____ the curtain at a Broadway musical.",
+                    "options":["A. Around","B. Behind","C. Over","D. Under"],
+                    "correct":1,
+                    "translation":"我推荐这部电影的原因是它让我们窥视了百老汇音乐剧的幕后。",
+                    "optionsTranslation":["在周围","在后面","在上面","在下面"]
+                },
+                {
+                    "question":"The old man traveled by train for two days, just to apologize to his son in person, but his son was not interested in a reconciliation _______ his father.",
+                    "options":["A. To","B. With","C. Between","D. On"],
+                    "correct":1,
+                    "translation":"这位老人坐了两天火车，就是为了亲自向他的儿子道歉，但他的儿子对他与父亲和解并不感兴趣。",
+                    "optionsTranslation":["给","与","在...之间","在"]
+                },
+                {
+                    "question":"The government has launched a crackdown ________ off-campus tutoring, aiming to relieve the burden on students.",
+                    "options":["A. On","B. Over","C. In","D. About"],
+                    "correct":0,
+                    "translation":"政府已经发起了一场针对校外辅导的打击行动，目的是减轻学生的负担。",
+                    "optionsTranslation":["对","超过","在","关于"]
+                },
+                {
+                    "question":"These file pages are all out of _________; how can I send such a mess to my boss?",
+                    "options":["A. Law","B. Order","C. Rule","D. Regulation"],
+                    "correct":1,
+                    "translation":"这些文件页都乱了，我怎么能把我老板弄得这么乱呢？",
+                    "optionsTranslation":["法律","秩序","规则","规定"]
+                },
+                {
+                    "question":"Witnesses were asked to stick to the facts and leave __________ all emotion and sentiment.",
+                    "options":["A. Aside","B. Out","C. Behind","D. Alone"],
+                    "correct":0,
+                    "translation":"证人被要求坚持事实，把所有的情感和情绪都放在一边。",
+                    "optionsTranslation":["放在一边","遗漏","留下","独自"]
+                },
+                {
+                    "question":"The different degrees of difficulty are [designated 指定，用...表示] by the numbers 1, 2 and 3.",
+                    "options":["A. Recognized","B. Generalized","C. Represented","D. Simplified"],
+                    "correct":2,
+                    "translation":"不同的难度级别由数字1、2和3[表示]。",
+                    "optionsTranslation":["认可","概括","用...表示","简化"]
+                },
+                {
+                    "question":"The reason for the low [turnout 出席人数] at the football match could be that the prospect of a thunder storm scared people away.",
+                    "options":["A. Appearance","B. Annoyance","C. Attendance","D. Arrogance"],
+                    "correct":2,
+                    "translation":"足球比赛的低[出席人数]可能是由于雷暴的前景吓跑了人们。",
+                    "optionsTranslation":["外表","烦恼","出席人数","傲慢"]
+                },
+                {
+                    "question":"His failure in the Olympic Games made him feel [gloomy 沮丧的，悲观的] about his future career.",
+                    "options":["A. Deprived","B. Depressed","C. Despised","D. Desolated"],
+                    "correct":1,
+                    "translation":"他在奥运会上的失败使他对自己的未来职业感到[gloomy]。",
+                    "optionsTranslation":["被剥夺","沮丧","被鄙视","荒凉"]
+                },
+                {
+                    "question":"Our product's selling price experienced a 10% [plunge 骤降] in the past two weeks.",
+                    "options":["A. Sharp increase","B. Sharp decrease","C. Obvious fluctuation","D. Obvious change"],
+                    "correct":1,
+                    "translation":"我们产品的售价在过去的两周内经历了10%的[plunge]。",
+                    "optionsTranslation":["急剧增加","急剧减少","明显波动","明显变化"]
+                },
+                {
+                    "question":"During the Second World War, the pilot was forced to land in enemy territory and was [kept captive 被囚禁] for 6 months there.",
+                    "options":["A. Hidden away","B. Lost contact","C. Thrown in jail","D. Sentenced to death"],
+                    "correct":2,
+                    "translation":"在第二次世界大战期间，飞行员被迫在敌方领土降落，并在那里被[kept captive]了6个月。",
+                    "optionsTranslation":["藏起来","失去联系","关进监狱","判处死刑"]
+                }
+            ],
+            U11: [
+                {
+                    "question":"Fiona looked quite stunning(惊人的，迷人的), wearing a white silk blouse(短上衣，衬衫) which ________ her olive(橄榄色，茶青色的) skin perfectly.",
+                    "options":["A. Completed","B. Complimented","C. Complicated","D. Complemented"],
+                    "correct":3,
+                    "translation":"菲奥娜看起来非常迷人，穿着一件白色丝绸衬衫，与她橄榄色的皮肤相得益彰。",
+                    "optionsTranslation":["完成","赞美","使复杂","补充，衬托"]
+                },
+                {
+                    "question":"Doing farm work is quite painful for them in summer vacation. _________, they are sometimes assigned schoolwork they find distasteful(令人生厌的).",
+                    "options":["A. Likely","B. Likewise","C. Alike","D. Unlikely"],
+                    "correct":1,
+                    "translation":"在暑假里，干农活对他们来说很痛苦。________，他们有时还会被分配到他们觉得讨厌的学校作业。",
+                    "optionsTranslation":["可能","同样","相似","不太可能"]
+                },
+                {
+                    "question":"The parents were devastated(毁坏，使极度震惊/伤心欲绝) when they found their rebellious(叛乱的；反抗的；难处理/对付的) son had participated in ______ activities.",
+                    "options":["A. Explicit","B. Implicit","C. Elicit","D. Illicit"],
+                    "correct":3,
+                    "translation":"当父母发现他们叛逆的儿子参与了________活动时，他们感到非常震惊。",
+                    "optionsTranslation":["明确的","隐含的","引出","非法的"]
+                },
+                {
+                    "question":"The sunrise seen from the top of the mountain is a tremendous(巨大的，极好的)(川普爱 词) _______, which attracts tens of thousands of visitors from around the world.",
+                    "options":["A. Spectrum","B. Spectator","C. Speculation","D. Spectacle"],
+                    "correct":3,
+                    "translation":"从山顶看到的日出是一个巨大的________，吸引了来自世界各地的数万名游客。",
+                    "optionsTranslation":["范围","观众","猜测","壮观景象"]
+                },
+                {
+                    "question":"Though Julie is 50 pounds overweight, she is still __________ to the temptation(引诱，诱惑) of eating junk food.",
+                    "options":["A. Suspected","B. Suspicious","C. Susceptible","D. Suspended"],
+                    "correct":2,
+                    "translation":"尽管朱莉超重50磅，她仍然对吃垃圾食品的诱惑__________。",
+                    "optionsTranslation":["怀疑","可疑","易受影响","暂停"]
+                },
+                {
+                    "question":"The article argues that the current(当前的，现行的) obsession(痴迷，困惑) _____ exam results is actually harming the education of our children.",
+                    "options":["A. For","B. Of","C. Over","D. With"],
+                    "correct":3,
+                    "translation":"文章认为，目前对考试成绩的痴迷实际上正在损害我们孩子的教育。",
+                    "optionsTranslation":["为了","的","超过","与"]
+                },
+                {
+                    "question":"As the disease killed more and more villagers, the doctors had to find the cure(疗法), ______ of the cost and barriers.",
+                    "options":["A. Desirous","B. Tolerant","C. Irrespective","D. Comprehensive"],
+                    "correct":2,
+                    "translation":"随着疾病夺去越来越多村民的生命，医生们不得不找到治疗方法，________成本和障碍。",
+                    "optionsTranslation":["渴望的","容忍的","不管","全面的"]
+                },
+                {
+                    "question":"A political clash(冲突，分歧) _______ the two parties happened and quickly developed into open conflict(公开冲突，外部冲突).",
+                    "options":["A. Over","B. With","C. Between","D. On"],
+                    "correct":2,
+                    "translation":"两个政党之间的政治冲突发生了，并迅速发展成公开的冲突。",
+                    "optionsTranslation":["关于","和","在...之间","在"]
+                },
+                {
+                    "question":"We will ________ to strict sales(销售) ethics(行为准则，道德) as usual, with none of the disturbing(令人不安的) phone calls and text messages.",
+                    "options":["A. Adhere","B. Yield","C. Adjust","D. Respond"],
+                    "correct":0,
+                    "translation":"我们将一如既往地________严格的销售道德，不会有令人不安的电话和短信。",
+                    "optionsTranslation":["坚持","产生","调整","回应"]
+                },
+                {
+                    "question":"________ retrospect(回顾，回想), I think I should have been more hardworking to make more academic achievements.",
+                    "options":["A. For","B. At","C. In","D. To"],
+                    "correct":2,
+                    "translation":"回顾过去，我认为我本应该更加努力，以取得更多的学术成就。",
+                    "optionsTranslation":["为了","在","在","到"]
+                },
+                {
+                    "question":"University officials deny that the [pending(待决的，待处理的)] resignation(辞职，辞职信) of the president is related to the financial disaster.",
+                    "options":["A. Eminent","B. Imminent","C. Imperative","D. Operative"],
+                    "correct":1,
+                    "translation":"大学官员否认校长的[待决的]辞职与财务灾难有关。",
+                    "optionsTranslation":["杰出的","迫在眉睫的","极重要的","有效的"]
+                },
+                {
+                    "question":"Sam was able to [mingle(应酬，交际)] with other students at the party, discussing with them about a variety of things like politics.",
+                    "options":["A. Socialize","B. Reconcile","C. Combine","D. Involve"],
+                    "correct":0,
+                    "translation":"萨姆能够在聚会上与其他学生[交际]，与他们讨论各种事情，如政治。",
+                    "optionsTranslation":["交往","调和","结合","涉及"]
+                },
+                {
+                    "question":"There are a large number of entertainment facilities(设施，工具) in the [vicinity(附近，周围地区)] of your holiday accommodation or in the resort(旅游胜地，采用，求助) area generally.",
+                    "options":["A. Proximity","B. Margin","C. Affiliate","D. Venue"],
+                    "correct":0,
+                    "translation":"在你的度假住所附近或度假区周围有大量的娱乐设施。",
+                    "optionsTranslation":["靠近","边缘","附属","场所"]
+                },
+                {
+                    "question":"As a young scientist, the only [ladder(途径，梯子，阶段)] to assure(确保) success is to be realistic and work hard.",
+                    "options":["A. Means","B. Destination","C. Media","D. Resource"],
+                    "correct":0,
+                    "translation":"作为一名年轻科学家，确保成功的唯一[ladder]是现实一点，努力工作。",
+                    "optionsTranslation":["方法","目的地","媒体","资源"]
+                },
+                {
+                    "question":"It is one of the most important and valuable abilities to [regulate((用规则条例)控制；调节；监管)] your emotion in the face of difficulty.",
+                    "options":["A. Operate","B. Manage","C. Organize","D. Address"],
+                    "correct":1,
+                    "translation":"在困难面前[调节]你的情绪是最重要的能力之一。",
+                    "optionsTranslation":["操作","管理","组织","处理"]
+                }
+            ],
+            U12: [
+                {
+                    "question":"Our residents complain that ________ workers have threatened to take already scarce jobs in this city.",
+                    "options":["A. Immigrating","B. Migrant","C. Migration","D. Emigrant"],
+                    "correct":1,
+                    "translation":"我们的居民抱怨说，________工人威胁要在这个城市抢走已经稀缺的工作。",
+                    "optionsTranslation":["移民","移民工人","移民","移居外国者"]
+                },
+                {
+                    "question":"The navies(navy 海军) of the two countries have _______ maritime(海上的，沿海的) operations(运营) in the western areas of the Ocean.",
+                    "options":["A. Conductive","B. Conducted","C. Conductions","D. Conductors"],
+                    "correct":1,
+                    "translation":"两国的海军在大洋的西部地区进行了海上行动。",
+                    "optionsTranslation":["导电的","进行","传导","导体"]
+                },
+                {
+                    "question":"Excessive(过度的，过多的) work and insufficient(不充分的 | sufficient 足够的，充足的) rest could lead to an unhealthy lifestyle, with subsequent(随后的，接着的) _______ of the immune(免疫的) system.",
+                    "options":["A. Depression","B. Oppression","C. Suppression","D. Impression"],
+                    "correct":2,
+                    "translation":"过度的工作和不足的休息可能导致不健康的生活方式，随后对免疫系统产生________。",
+                    "optionsTranslation":["抑郁","压迫","抑制","印象"]
+                },
+                {
+                    "question":"I have kept this old watch for _______ reasons since I don't need it for practical(真实的，实际的) purposes. It was a gift from my mother when I graduated from high school.",
+                    "options":["A. Sensible","B. Sensational","C. Sentimental","D. Sensitive"],
+                    "correct":2,
+                    "translation":"我保留这块旧表是出于________的原因，因为我并不需要它来满足实际用途。这是我在高中毕业时母亲送给我的礼物。",
+                    "optionsTranslation":["理智的","轰动的","情感的","敏感的"]
+                },
+                {
+                    "question":"According to the university regulations(规则，制度), students may be granted an _____ from some classes in the curriculum for different reasons.",
+                    "options":["A. Exception","B. Exemption","C. Exertion","D. Execution"],
+                    "correct":1,
+                    "translation":"根据大学规定，学生可能因不同原因被允许免修课程。",
+                    "optionsTranslation":["例外","豁免","努力","执行"]
+                },
+                {
+                    "question":"The Chinese sun-protection(防晒) market is surging(涌动，激增) along with the increasing consumer demand among people who are now more ______ of the negative impacts of ultraviolet rays(紫外线).",
+                    "options":["A. Critical","B. Conscious","C. Conspicuous","D. Considerate"],
+                    "correct":1,
+                    "translation":"随着消费者对紫外线危害的认识不断提高，中国的防晒市场正在迅速增长。",
+                    "optionsTranslation":["批判的","意识到的","明显的","体贴的"]
+                },
+                {
+                    "question":"The witness(目击者) was pressured to(迫于压力) cover for(掩盖) the defendant's (被告的) whereabouts(下落) on the night when the little girl was killed, but he refused to lie ______ oath(誓言).",
+                    "options":["A. In","B. With","C. At","D. Under"],
+                    "correct":3,
+                    "translation":"证人受到压力，要为小女孩遇害当晚被告的行踪作掩护，但他拒绝在宣誓后说谎。",
+                    "optionsTranslation":["在","和","在","在"]
+                },
+                {
+                    "question":"No one can make great achievements ________ through lots of hardships and mistakes.",
+                    "options":["A. Except","B. Given","C. After","D. Despite"],
+                    "correct":0,
+                    "translation":"没有人能通过经历许多困难和错误而取得巨大成就。",
+                    "optionsTranslation":["除了","鉴于","在...之后","尽管"]
+                },
+                {
+                    "question":"The board of directors(董事会) disapproved _______ the proposed(被建议的，建议的) budget cuts, citing(列举，引用) potential negative impacts on employee morale(士气) and overall company performance.",
+                    "options":["A. On","B. Of","C. About","D. Against"],
+                    "correct":1,
+                    "translation":"董事会不赞成提议的预算削减，理由是这可能对员工士气和公司整体业绩产生负面影响。",
+                    "optionsTranslation":["在","对","关于","反对"]
+                },
+                {
+                    "question":"The twin sisters are so similar that one is often mistaken ________ the other even by their grandparents.",
+                    "options":["A. To","B. Towards","C. For","D. By"],
+                    "correct":2,
+                    "translation":"这对双胞胎姐妹长得如此相似，以至于她们的祖父母有时也会把一个认成另一个。",
+                    "optionsTranslation":["给","向","被误认为","通过"]
+                },
+                {
+                    "question":"The scientist is [doubtful] about the new theory, questioning its validity(有效性) and trying to find more evidence.",
+                    "options":["A. Scornful","B. Superstitious","C. Sarcastic","D. Sceptical"],
+                    "correct":3,
+                    "translation":"这位科学家对新理论持怀疑态度，质疑其有效性，并试图寻找更多证据。",
+                    "optionsTranslation":["轻蔑的","迷信的","讽刺的","怀疑的"]
+                },
+                {
+                    "question":"The report shows that the Supreme Court(最高法院) has [overturned(推翻)] more than 300 cases over the past 200 years.",
+                    "options":["A. Cut down","B. Knocked over","C. Passed on","D. Ruled against"],
+                    "correct":3,
+                    "translation":"报告显示，最高法院在过去200年中已经推翻了300多起案件。",
+                    "optionsTranslation":["砍倒","击倒","传递","裁定...败诉"]
+                },
+                {
+                    "question":"The dancing during the long break will make a pleasant [diversion(消遣，转移注意力的事物，转向，支路)] for students.",
+                    "options":["A. Branch","B. Separation","C. Switch","D. Relaxation"],
+                    "correct":3,
+                    "translation":"课间休息时的舞蹈将为学生提供一个愉快的消遣。",
+                    "optionsTranslation":["分支","分离","转换","放松"]
+                },
+                {
+                    "question":"Thousands of people were rescued as(因为，由于) they had been [evacuated(疏散)] from the town shortly before the natural disaster.",
+                    "options":["A. Deserted","B. Abandoned","C. Replaced","D. Withdrawn"],
+                    "correct":3,
+                    "translation":"数千人在自然灾害发生前被疏散，因此得以获救。",
+                    "optionsTranslation":["遗弃","抛弃","取代","撤离"]
+                },
+                {
+                    "question":"Even though the young man is 20 years old, he is still [tied to his mother’s apron strings(被 他母亲绑在围裙上)].",
+                    "options":["A. Dependent on his mom","B. Compliant with his mom","C. Rebellious against his mom","D. Influenced by his mom"],
+                    "correct":0,
+                    "translation":"尽管这个年轻人已经20岁了，但他仍然依赖他的母亲。",
+                    "optionsTranslation":["依赖他的妈妈","顺从他的妈妈","反抗他的妈妈","受他妈妈影响"]
+                }
+            ]
+        };
+
+
+
+        // 全局变量
+        let currentUnit = 'U1';
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let score = 0;
+        let answered = false;
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeQuiz();
+            setupUnitSelector();
+        });
+
+        function setupUnitSelector() {
+            const unitButtons = document.querySelectorAll('.unit-btn');
+            unitButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // 移除所有active类
+                    unitButtons.forEach(b => b.classList.remove('active'));
+                    // 添加active类到当前按钮
+                    this.classList.add('active');
+                    
+                    // 切换单元
+                    currentUnit = this.dataset.unit;
+                    resetQuiz();
+                    loadQuestion();
+                });
+            });
+        }
+
+        function initializeQuiz() {
+            resetQuiz();
+            loadQuestion();
+        }
+
+        function resetQuiz() {
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            score = 0;
+            answered = false;
+            document.getElementById('resultContainer').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+        }
+
+        function loadQuestion() {
+            const questions = questionBank[currentUnit];
+            if (!questions || currentQuestionIndex >= questions.length) {
+                showResults();
+                return;
+            }
+
+            const question = questions[currentQuestionIndex];
+            
+            // 更新题目信息
+            document.getElementById('currentUnit').textContent = currentUnit;
+            document.getElementById('questionNumber').textContent = `题目 ${currentQuestionIndex + 1}/${questions.length}`;
+            document.getElementById('questionText').textContent = question.question;
+            
+            // 隐藏翻译
+            document.getElementById('questionTranslation').classList.add('hidden');
+            
+            // 更新进度条
+            const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            // 生成选项
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'option';
+                optionDiv.innerHTML = `
+                    <div class="option-main">
+                        <input type="radio" name="answer" value="${index}" id="option${index}">
+                        <label for="option${index}">${option}</label>
+                    </div>
+                    <div class="option-translation hidden">${question.optionsTranslation[index]}</div>
+                `;
+                optionDiv.addEventListener('click', function() {
+                    document.getElementById(`option${index}`).checked = true;
+                    // 移除其他选项的选中状态
+                    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                    // 添加当前选项的选中状态
+                    this.classList.add('selected');
+                });
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // 重置状态
+            answered = false;
+            document.getElementById('feedback').classList.add('hidden');
+            document.getElementById('submitBtn').classList.remove('hidden');
+            document.getElementById('nextBtn').classList.add('hidden');
+            
+            // 更新按钮状态
+            document.getElementById('prevBtn').disabled = currentQuestionIndex === 0;
+        }
+
+           function submitAnswer() {
+            if (answered) return;
+            
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+            if (!selectedOption) {
+                alert('请选择一个答案！');
+                return;
+            }
+            
+            const userAnswer = parseInt(selectedOption.value);
+            const question = questionBank[currentUnit][currentQuestionIndex];
+            const isCorrect = userAnswer === question.correct;
+            
+            userAnswers[currentQuestionIndex] = userAnswer;
+            answered = true;
+            
+            // 显示题目翻译
+            document.getElementById('questionTranslation').textContent = question.translation;
+            document.getElementById('questionTranslation').classList.remove('hidden');
+            
+            // 显示正确答案和选项翻译
+            const options = document.querySelectorAll('.option');
+            options.forEach((option, index) => {
+                const translationDiv = option.querySelector('.option-translation');
+                translationDiv.classList.remove('hidden');
+                
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === userAnswer && !isCorrect) {
+                    option.classList.add('incorrect');
+                }
+                option.style.pointerEvents = 'none';
+            });
+            
+            // 显示反馈
+            const feedback = document.getElementById('feedback');
+            feedback.classList.remove('hidden');
+            if (isCorrect) {
+                feedback.className = 'feedback correct';
+                feedback.textContent = '✅ 回答正确！';
+                score++;
+            } else {
+                feedback.className = 'feedback incorrect';
+                feedback.textContent = `❌ 回答错误。正确答案是: ${question.options[question.correct]}`;
+            }
+            
+            // 切换按钮
+            document.getElementById('submitBtn').classList.add('hidden');
+            document.getElementById('nextBtn').classList.remove('hidden');
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                loadQuestion();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quizContainer').classList.add('hidden');
+            document.getElementById('resultContainer').classList.remove('hidden');
+            
+            const totalQuestions = questionBank[currentUnit].length;
+            const percentage = Math.round((score / totalQuestions) * 100);
+            
+            document.getElementById('finalScore').textContent = `${score}/${totalQuestions}`;
+            document.getElementById('scorePercentage').textContent = `正确率: ${percentage}%`;
+        }
+
+        function restartQuiz() {
+            resetQuiz();
+            loadQuestion();
+        }
+    </script>
+</body>
+</html>
+
