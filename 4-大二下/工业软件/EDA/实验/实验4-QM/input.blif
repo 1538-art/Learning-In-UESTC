@@ -1,0 +1,10 @@
+.model circuit
+.inputs A B C
+.outputs F
+.names A B C F
+000 1
+001 1
+101 1
+111 1
+110 1
+.end
